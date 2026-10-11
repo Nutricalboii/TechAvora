@@ -7,12 +7,12 @@ const BASE_URL = siteConfig.url;
 
 // Static date — update this when content changes, not on every deploy.
 // Using new Date() here would make the sitemap uncacheable and mislead crawlers.
-const LAST_MODIFIED = new Date('2026-10-06');
+const LAST_MODIFIED = new Date('2026-10-11');
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: `${BASE_URL}/home`,
+      url: `${BASE_URL}/`,
       lastModified: LAST_MODIFIED,
       changeFrequency: 'monthly',
       priority: 1.0,

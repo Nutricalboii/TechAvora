@@ -20,11 +20,11 @@ function useScrollTo() {
       }
     };
 
-    if (pathname === '/home') {
+    if (pathname === '/') {
       // Already on home — always force scroll (fixes repeated-click issue)
       scrollNow();
     } else {
-      router.push(`/home#${sectionId}`);
+      router.push(`/#${sectionId}`);
       // After navigation, wait for DOM then scroll
       setTimeout(scrollNow, 400);
     }
@@ -44,7 +44,7 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link href="/home" className="inline-block mb-5 hover:opacity-80 transition-opacity">
+            <Link href="/" className="inline-block mb-5 hover:opacity-80 transition-opacity">
               <Logo size="md" className="h-9 w-auto text-[var(--foreground)]" />
             </Link>
             <p className="text-base text-[var(--foreground-muted)] leading-relaxed max-w-xs">

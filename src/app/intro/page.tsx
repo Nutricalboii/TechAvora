@@ -116,13 +116,13 @@ export default function IntroPage() {
   const router = useRouter();
   const [leaving, setLeaving] = useState(false);
   useWebGL(canvasRef);
-  useEffect(() => { router.prefetch('/home'); }, [router]);
+  useEffect(() => { router.prefetch('/'); }, [router]);
 
   const enter = () => {
     if (leaving) return;
     setLeaving(true);
     sessionStorage.setItem('avora_intro_seen', '1');
-    router.push('/home');
+    router.push('/');
   };
 
   // Also enter on scroll

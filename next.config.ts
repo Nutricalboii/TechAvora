@@ -74,7 +74,10 @@ const nextConfig: NextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   async redirects() {
-    return [];
+    return [
+      // Keep the legacy route discoverable but consolidate it into the clean root URL.
+      { source: "/home", destination: "/", permanent: true },
+    ];
   },
   async headers() {
     return [

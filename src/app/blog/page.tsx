@@ -138,6 +138,8 @@ export default function BlogPage() {
             <div className="lg:col-span-5 min-h-[240px] lg:min-h-0 relative overflow-hidden bg-slate-800">
               <div
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                role="img"
+                aria-label={`${featured.title} featured illustration`}
                 style={{ backgroundImage: `url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=85&fit=crop&auto=format')` }}
               />
               <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/10" />

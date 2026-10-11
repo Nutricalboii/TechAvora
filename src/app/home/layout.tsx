@@ -5,12 +5,12 @@ export const metadata: Metadata = {
   title: 'Production AI Data Operations & Solutions',
   description:
     'Avora Ventures prepares high-quality AI data and builds production-ready AI solutions through one integrated delivery framework.',
-  alternates: { canonical: '/home' },
+  alternates: { canonical: '/' },
   openGraph: {
     title: 'Production AI Data Operations & Solutions',
     description:
       'High-quality AI data and production-ready AI solutions from Avora Ventures.',
-    url: `${siteConfig.url}/home`,
+    url: siteConfig.url,
     type: 'website',
   },
 };

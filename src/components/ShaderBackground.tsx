@@ -10,7 +10,7 @@ export default function ShaderBackground() {
   const pathname = usePathname();
 
   // Only run shader on the home page
-  const isActive = pathname === '/home' || pathname === '/';
+  const isActive = pathname === '/';
 
   useEffect(() => {
     const canvas = canvasRef.current;

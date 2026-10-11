@@ -1,5 +1,3 @@
-import { permanentRedirect } from 'next/navigation';
+import HomePage from './home/HomePage';
 
-export default function Root() {
-  permanentRedirect('/home');
-}
+export default HomePage;

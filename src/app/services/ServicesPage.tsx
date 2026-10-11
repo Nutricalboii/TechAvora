@@ -1,9 +1,8 @@
 'use client';
 
-import React, { useState, useEffect, useRef, Suspense } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
-import { ArrowLeft, ChevronDown } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 
 // ────────────────────────────────────────────────────────────────────
 const stages = [
@@ -608,7 +607,6 @@ function ServicesOverviewGrid({ onDiveDeep, onSelectStage }: { onDiveDeep: () =>
 function ServicesContent() {
   const [selectedStage, setSelectedStage] = useState<number | null>(null);
   const topRef = useRef<HTMLDivElement>(null);
-  const searchParams = useSearchParams();
 
   const scrollToTop = () => {
     if (topRef.current) {
@@ -622,7 +620,7 @@ function ServicesContent() {
   };
 
   useEffect(() => {
-    const stageParam = searchParams.get('stage');
+    const stageParam = new URLSearchParams(window.location.search).get('stage');
     if (stageParam) {
       const p = stageParam.trim().toLowerCase();
       const byId = stages.findIndex((s) => s.id === p || s.id === p.padStart(2, '0'));
@@ -635,7 +633,7 @@ function ServicesContent() {
         if (num >= 0 && num < stages.length) { setSelectedStage(num); return; }
       }
     }
-  }, [searchParams]);
+  }, []);
 
   const handleExplore = (i: number) => {
     setSelectedStage(i);
@@ -666,7 +664,7 @@ function ServicesContent() {
       <section className="pt-24 sm:pt-32 lg:pt-36 pb-8 sm:pb-12 lg:pb-16 border-b border-slate-100 bg-white">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-8 lg:px-12">
           <Link
-            href="/home"
+            href="/"
             className="inline-flex items-center gap-2 text-slate-700 bg-slate-100 hover:bg-slate-200 active:bg-slate-300 px-3.5 py-2 rounded-full transition-all mb-5 sm:mb-6 font-mono text-xs font-bold tracking-wider group cursor-pointer touch-manipulation min-h-[38px]"
           >
             <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1" />
@@ -802,7 +800,7 @@ function ServicesContent() {
       <section className="py-10 sm:py-14 lg:py-16 bg-white border-t border-slate-100 text-center">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-8 lg:px-12">
           <Link
-            href="/home#contact"
+            href="/#contact"
             className="inline-flex items-center gap-2 bg-[#B8860B] hover:bg-[#a07508] text-white font-mono text-[10px] sm:text-xs tracking-widest uppercase px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-bold shadow-sm hover:shadow-md transition-all duration-200 active:scale-95"
           >
             <span>Get in touch</span>
@@ -815,9 +813,5 @@ function ServicesContent() {
 }
 
 export default function ServicesPage() {
-  return (
-    <Suspense fallback={<div className="min-h-screen bg-white" />}>
-      <ServicesContent />
-    </Suspense>
-  );
+  return <ServicesContent />;
 }

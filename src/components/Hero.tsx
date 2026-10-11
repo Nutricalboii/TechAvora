@@ -31,7 +31,7 @@ export default function Hero() {
       {/* Optimized background image using next/image */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-black">
         <Image
-          src="/abstract.jpg"
+          src="/abstract.webp"
           alt=""
           aria-hidden="true"
           fill

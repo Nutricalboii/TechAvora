@@ -3,19 +3,13 @@ import type { NextRequest } from 'next/server';
 
 // Edge middleware — runs before any route handler or page render.
 // Responsibilities:
-//   1. Root → /home redirect
-//   2. Block obviously malicious request patterns early
-//   3. Stamp security headers that Next.js config cannot set at the edge
+//   1. Block obviously malicious request patterns early
+//   2. Stamp security headers that Next.js config cannot set at the edge
 
 export default function middleware(request: NextRequest): NextResponse {
   const { pathname } = request.nextUrl;
 
-  // ── 1. Root redirect ──────────────────────────────────────────────────────
-  if (pathname === '/') {
-    return NextResponse.redirect(new URL('/home', request.url));
-  }
-
-  // ── 2. Block common vulnerability scanner / path-traversal probes ─────────
+  // ── 1. Block common vulnerability scanner / path-traversal probes ─────────
   const BLOCKED_PATTERNS = [
     /\.\.\//,              // Path traversal
     /<script/i,            // Reflected XSS in URL
@@ -30,7 +24,7 @@ export default function middleware(request: NextRequest): NextResponse {
     return new NextResponse(null, { status: 400 });
   }
 
-  // ── 3. Continue, stamping security headers ────────────────────────────────
+  // ── 2. Continue, stamping security headers ────────────────────────────────
   const response = NextResponse.next();
 
   // These are already in next.config.ts but stamping at the edge ensures

@@ -12,7 +12,7 @@ export default function PrivacyPage() {
     <div className="pt-36 pb-24 min-h-screen bg-[var(--background)]">
       <div className="max-w-3xl mx-auto px-6 sm:px-8 lg:px-12">
         <Link
-          href="/home"
+          href="/"
           className="group inline-flex items-center gap-2 text-sm font-semibold text-[var(--foreground-muted)] hover:text-[var(--accent)] transition-colors mb-10"
         >
           <svg
