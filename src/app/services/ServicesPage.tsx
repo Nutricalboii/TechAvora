@@ -497,7 +497,7 @@ function StagePanel({ stage }: { stage: typeof stages[0] }) {
               <div key={i} className="grid grid-cols-1 sm:grid-cols-2 gap-0 border border-slate-200 rounded-xl sm:rounded-2xl overflow-hidden shadow-sm">
                 <div className="p-4 sm:p-6 bg-red-50/50">
                   <p className="font-mono text-xs tracking-widest uppercase text-red-500 mb-1.5 sm:mb-2 font-bold">Myth</p>
-                  <p className="text-sm sm:text-base font-bold text-slate-800 italic">"{m.myth}"</p>
+                  <p className="text-sm sm:text-base font-bold text-slate-800 italic">&quot;{m.myth}&quot;</p>
                 </div>
                 <div className="p-4 sm:p-6 bg-emerald-50/50 border-t sm:border-t-0 sm:border-l border-slate-200">
                   <p className="font-mono text-xs tracking-widest uppercase text-emerald-700 mb-1.5 sm:mb-2 font-bold">Reality</p>
@@ -611,8 +611,8 @@ function ServicesContent() {
   const scrollToTop = () => {
     if (topRef.current) {
       const top = topRef.current.getBoundingClientRect().top + window.scrollY - 64;
-      if ((window as any).lenis) {
-        (window as any).lenis.scrollTo(top, { immediate: false });
+      if (window.avoraLenis) {
+        window.avoraLenis.scrollTo(top, { immediate: false });
       } else {
         window.scrollTo({ top, behavior: 'smooth' });
       }
@@ -637,8 +637,8 @@ function ServicesContent() {
 
   const handleExplore = (i: number) => {
     setSelectedStage(i);
-    if ((window as any).lenis) {
-      (window as any).lenis.scrollTo(0, { immediate: true });
+    if (window.avoraLenis) {
+      window.avoraLenis.scrollTo(0, { immediate: true });
     } else {
       window.scrollTo({ top: 0 });
     }
@@ -646,8 +646,8 @@ function ServicesContent() {
 
   const handleBackToAll = () => {
     setSelectedStage(null);
-    if ((window as any).lenis) {
-      (window as any).lenis.scrollTo(0, { immediate: true });
+    if (window.avoraLenis) {
+      window.avoraLenis.scrollTo(0, { immediate: true });
     } else {
       window.scrollTo({ top: 0 });
     }
@@ -675,7 +675,7 @@ function ServicesContent() {
             <span className="text-[#B8860B]">One Framework.</span>
           </h1>
           <p className="text-sm sm:text-lg md:text-xl lg:text-2xl text-slate-700 max-w-3xl leading-relaxed font-medium">
-            Raw data doesn't become intelligence by accident. It moves through six disciplines, each handing off a more refined asset to the next.
+            Raw data doesn&apos;t become intelligence by accident. It moves through six disciplines, each handing off a more refined asset to the next.
           </p>
         </div>
       </section>

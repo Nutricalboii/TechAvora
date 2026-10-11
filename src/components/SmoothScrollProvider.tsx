@@ -15,7 +15,7 @@ export default function SmoothScrollProvider({ children }: { children: React.Rea
       gestureOrientation: 'vertical',
     });
 
-    (window as any).lenis = lenis;
+    window.avoraLenis = lenis;
 
     let rafId: number;
     function raf(time: number) {
@@ -27,14 +27,14 @@ export default function SmoothScrollProvider({ children }: { children: React.Rea
     return () => {
       cancelAnimationFrame(rafId);
       lenis.destroy();
-      (window as any).lenis = null;
+      window.avoraLenis = null;
     };
   }, []);
 
   const pathname = usePathname();
   useEffect(() => {
-    if ((window as any).lenis) {
-      (window as any).lenis.scrollTo(0, { immediate: true });
+    if (window.avoraLenis) {
+      window.avoraLenis.scrollTo(0, { immediate: true });
     }
   }, [pathname]);
 

@@ -1,11 +1,9 @@
 'use client';
-import React, { useRef } from 'react';
+import React from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
 
 if (typeof window !== 'undefined') { gsap.registerPlugin(ScrollTrigger); }
-import Link from 'next/link';
 
 const cases = [
   {

@@ -8,15 +8,7 @@ interface LogoProps {
   size?: 'sm' | 'md' | 'lg' | 'xl';
 }
 
-const sizes = {
-  sm:  { ring: 18, fontSize: 11, sub: 8.5, gap: 6 },
-  md:  { ring: 24, fontSize: 15, sub: 11,  gap: 8 },
-  lg:  { ring: 32, fontSize: 20, sub: 14,  gap: 10 },
-  xl:  { ring: 48, fontSize: 30, sub: 21,  gap: 14 },
-};
-
-export function Logo({ className, size = 'md' }: LogoProps) {
-  const s = sizes[size];
+export function Logo({ className }: LogoProps) {
 
   return (
     <svg

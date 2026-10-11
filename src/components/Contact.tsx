@@ -111,7 +111,7 @@ export default function Contact() {
             Start a Project Conversation
           </span>
           <p className="font-sans text-slate-600 text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
-            Tell us what you're building, where you are in the AI lifecycle, and what's blocking you. We'll identify where Avora can help.
+            Tell us what you&apos;re building, where you are in the AI lifecycle, and what&apos;s blocking you. We&apos;ll identify where Avora can help.
           </p>
         </div>
 
