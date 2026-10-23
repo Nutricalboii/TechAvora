@@ -1,38 +1,47 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
+import { siteConfig } from '@/config/site';
 
 // ─── Schema ─────────────────────────────────────────────────────────────────
 
 const ContactSchema = z.object({
-  name: z.string().min(1, 'Name is required').max(100),
-  email: z.string().email('Invalid email address').max(254),
-  company: z.string().max(100).optional(),
-  serviceType: z.string().max(50).optional(),
-  focusArea: z.string().max(50).optional(),
-  industry: z.string().max(50).optional(),
-  message: z.string().min(1, 'Message is required').max(2000),
+  name: z.string().trim().min(1, 'Name is required').max(100),
+  email: z.string().trim().email('Invalid email address').max(254),
+  company: z.string().trim().max(100).optional(),
+  serviceType: z.string().trim().max(50).optional(),
+  focusArea: z.string().trim().max(50).optional(),
+  industry: z.string().trim().max(50).optional(),
+  message: z.string().trim().min(1, 'Message is required').max(2000),
   // Honeypot — bots fill this; real browsers leave it empty
   _honeypot: z.string().max(0, 'Bot detected').optional(),
 });
 
 // ─── Rate limiter ────────────────────────────────────────────────────────────
-// Simple in-process store. On Vercel each function invocation shares memory
-// within the same instance; good enough for spam throttling.
+// Best-effort per-instance throttling. Use Vercel Firewall or a shared store
+// for a globally enforced limit across serverless instances.
 
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
 const RATE_LIMIT = 5;           // max submissions per window
 const WINDOW_MS  = 15 * 60 * 1000; // 15 minutes
 
-// Periodically prune stale entries so the map doesn't grow unbounded
-setInterval(() => {
-  const now = Date.now();
+function pruneRateLimits(now: number): void {
+  if (rateLimitMap.size < 1_000) return;
+
+  // Prune on traffic instead of keeping a background timer alive in a serverless worker.
   for (const [key, val] of rateLimitMap.entries()) {
     if (now > val.resetAt) rateLimitMap.delete(key);
   }
-}, 5 * 60 * 1000); // every 5 minutes
+  // Bound memory if a burst produces many unique IP keys before they expire.
+  while (rateLimitMap.size > 5_000) {
+    const oldestKey = rateLimitMap.keys().next().value;
+    if (!oldestKey) break;
+    rateLimitMap.delete(oldestKey);
+  }
+}
 
 function isRateLimited(ip: string): boolean {
   const now = Date.now();
+  pruneRateLimits(now);
   const record = rateLimitMap.get(ip);
   if (!record || now > record.resetAt) {
     rateLimitMap.set(ip, { count: 1, resetAt: now + WINDOW_MS });
@@ -46,13 +55,62 @@ function isRateLimited(ip: string): boolean {
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
 function getClientIp(req: NextRequest): string {
-  // x-real-ip is set by Vercel's edge from the TCP connection — not spoofable
-  // x-forwarded-for is best-effort and should not be fully trusted
-  return (
-    req.headers.get('x-real-ip') ??
-    req.headers.get('x-forwarded-for')?.split(',')[0].trim() ??
-    'unknown'
-  );
+  // Vercel sets x-real-ip at its edge. Avoid trusting a caller-supplied
+  // x-forwarded-for value in production. The fallback supports local dev only.
+  const trustedPlatformIp = req.headers.get('x-real-ip')?.trim();
+  if (trustedPlatformIp) return trustedPlatformIp;
+  if (process.env.NODE_ENV === 'development') {
+    return req.headers.get('x-forwarded-for')?.split(',')[0].trim() || 'local';
+  }
+  return 'unknown';
+}
+
+function isTrustedOrigin(req: NextRequest): boolean {
+  const origin = req.headers.get('origin');
+  if (!origin || origin === 'null') return process.env.NODE_ENV === 'development';
+
+  try {
+    const parsedOrigin = new URL(origin);
+    if (parsedOrigin.origin === new URL(siteConfig.url).origin) return true;
+    return process.env.NODE_ENV === 'development' &&
+      ['localhost', '127.0.0.1'].includes(parsedOrigin.hostname);
+  } catch {
+    return false;
+  }
+}
+
+class RequestBodyTooLargeError extends Error {}
+
+async function readJsonBody(req: NextRequest): Promise<unknown> {
+  if (!req.body) throw new SyntaxError('Missing request body.');
+
+  const reader = req.body.getReader();
+  const chunks: Uint8Array[] = [];
+  let totalBytes = 0;
+
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      totalBytes += value.byteLength;
+      if (totalBytes > MAX_BODY_BYTES) {
+        await reader.cancel();
+        throw new RequestBodyTooLargeError();
+      }
+      chunks.push(value);
+    }
+  } finally {
+    reader.releaseLock();
+  }
+
+  const body = new Uint8Array(totalBytes);
+  let offset = 0;
+  for (const chunk of chunks) {
+    body.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+
+  return JSON.parse(new TextDecoder().decode(body));
 }
 
 function jsonError(message: string, status: number): NextResponse {
@@ -72,15 +130,24 @@ function jsonError(message: string, status: number): NextResponse {
 const MAX_BODY_BYTES = 8_192; // 8 KB — more than enough for a contact form
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
+  // Browser form submissions must originate from Avora itself.
+  if (!isTrustedOrigin(req)) {
+    return jsonError('Forbidden.', 403);
+  }
+
   // 1. Enforce Content-Type
-  const contentType = req.headers.get('content-type') ?? '';
-  if (!contentType.includes('application/json')) {
+  const contentType = (req.headers.get('content-type') ?? '').split(';', 1)[0].trim().toLowerCase();
+  if (contentType !== 'application/json') {
     return jsonError('Unsupported Media Type.', 415);
   }
 
   // 2. Enforce request body size
-  const contentLength = Number(req.headers.get('content-length') ?? 0);
-  if (contentLength > MAX_BODY_BYTES) {
+  const contentLengthHeader = req.headers.get('content-length');
+  const contentLength = contentLengthHeader === null ? null : Number(contentLengthHeader);
+  if (contentLength !== null && (!Number.isSafeInteger(contentLength) || contentLength < 0)) {
+    return jsonError('Invalid Content-Length.', 400);
+  }
+  if (contentLength !== null && contentLength > MAX_BODY_BYTES) {
     return jsonError('Request body too large.', 413);
   }
 
@@ -102,8 +169,11 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   // 4. Parse JSON body
   let rawBody: unknown;
   try {
-    rawBody = await req.json();
-  } catch {
+    rawBody = await readJsonBody(req);
+  } catch (err) {
+    if (err instanceof RequestBodyTooLargeError) {
+      return jsonError('Request body too large.', 413);
+    }
     return jsonError('Invalid JSON body.', 400);
   }
 
@@ -129,9 +199,9 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   const GOOGLE_SCRIPT_URL = process.env.GOOGLE_SCRIPT_URL;
 
   if (!GOOGLE_SCRIPT_URL) {
-    // Dev mode: no backend configured — log locally and succeed gracefully
+    // Dev mode can exercise the form without a configured delivery backend.
     if (process.env.NODE_ENV === 'development') {
-      console.warn('[Contact] GOOGLE_SCRIPT_URL not set — logging locally:', data);
+      console.info('[Contact] GOOGLE_SCRIPT_URL not set; accepted a local development submission.');
       return NextResponse.json({ success: true }, {
         headers: { 'Cache-Control': 'no-store' },
       });
@@ -140,8 +210,24 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     return jsonError('Service unavailable. Please email us directly.', 503);
   }
 
+  let scriptUrl: URL;
   try {
-    const res = await fetch(GOOGLE_SCRIPT_URL, {
+    scriptUrl = new URL(GOOGLE_SCRIPT_URL);
+  } catch {
+    console.error('[Contact] GOOGLE_SCRIPT_URL is invalid.');
+    return jsonError('Service unavailable. Please email us directly.', 503);
+  }
+  if (
+    scriptUrl.protocol !== 'https:' ||
+    scriptUrl.hostname !== 'script.google.com' ||
+    !/^\/macros\/s\/[^/]+\/exec$/.test(scriptUrl.pathname)
+  ) {
+    console.error('[Contact] GOOGLE_SCRIPT_URL must be an HTTPS Apps Script web app URL.');
+    return jsonError('Service unavailable. Please email us directly.', 503);
+  }
+
+  try {
+    const res = await fetch(scriptUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
@@ -149,7 +235,8 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       signal: AbortSignal.timeout(8_000),
     });
 
-    if (!res.ok) {
+    const result = await res.json().catch(() => null) as { success?: unknown } | null;
+    if (!res.ok || result?.success !== true) {
       console.error('[Contact] Google Script non-OK status:', res.status);
       return jsonError(
         'Submission could not be delivered. Please try again or email us directly.',
@@ -161,8 +248,8 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       headers: { 'Cache-Control': 'no-store' },
     });
   } catch (err) {
-    const isTimeout = err instanceof DOMException && err.name === 'TimeoutError';
-    console.error('[Contact] Google Script error:', isTimeout ? 'timeout' : err);
+    const isTimeout = err instanceof Error && err.name === 'TimeoutError';
+    console.error('[Contact] Google Script request failed:', isTimeout ? 'timeout' : 'network error');
     return jsonError(
       isTimeout
         ? 'Request timed out. Please try again.'

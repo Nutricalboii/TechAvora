@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 
@@ -604,8 +604,25 @@ function ServicesOverviewGrid({ onDiveDeep, onSelectStage }: { onDiveDeep: () =>
 // MAIN PAGE
 // ─────────────────────────────────────────────────────────────────────
 
-function ServicesContent() {
-  const [selectedStage, setSelectedStage] = useState<number | null>(null);
+function resolveInitialStage(stageParam: string | undefined): number | null {
+  if (!stageParam) return null;
+
+  const value = stageParam.trim().toLowerCase();
+  const byId = stages.findIndex((stage) => stage.id === value || stage.id === value.padStart(2, '0'));
+  if (byId !== -1) return byId;
+
+  const bySlug = stages.findIndex((stage) => stage.slug === value);
+  if (bySlug !== -1) return bySlug;
+
+  const number = Number.parseInt(value, 10);
+  if (Number.isNaN(number)) return null;
+  if (number >= 1 && number <= stages.length) return number - 1;
+  if (number >= 0 && number < stages.length) return number;
+  return null;
+}
+
+function ServicesContent({ initialStageParam }: { initialStageParam?: string }) {
+  const [selectedStage, setSelectedStage] = useState<number | null>(() => resolveInitialStage(initialStageParam));
   const topRef = useRef<HTMLDivElement>(null);
 
   const scrollToTop = () => {
@@ -618,22 +635,6 @@ function ServicesContent() {
       }
     }
   };
-
-  useEffect(() => {
-    const stageParam = new URLSearchParams(window.location.search).get('stage');
-    if (stageParam) {
-      const p = stageParam.trim().toLowerCase();
-      const byId = stages.findIndex((s) => s.id === p || s.id === p.padStart(2, '0'));
-      if (byId !== -1) { setSelectedStage(byId); return; }
-      const bySlug = stages.findIndex((s) => s.slug === p);
-      if (bySlug !== -1) { setSelectedStage(bySlug); return; }
-      const num = parseInt(p, 10);
-      if (!isNaN(num)) {
-        if (num >= 1 && num <= stages.length) { setSelectedStage(num - 1); return; }
-        if (num >= 0 && num < stages.length) { setSelectedStage(num); return; }
-      }
-    }
-  }, []);
 
   const handleExplore = (i: number) => {
     setSelectedStage(i);
@@ -812,6 +813,6 @@ function ServicesContent() {
   );
 }
 
-export default function ServicesPage() {
-  return <ServicesContent />;
+export default function ServicesPage({ initialStageParam }: { initialStageParam?: string }) {
+  return <ServicesContent initialStageParam={initialStageParam} />;
 }

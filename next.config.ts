@@ -23,8 +23,10 @@ const cspDirectives = [
 ];
 
 const securityHeaders = [
-  // Prevent DNS pre-fetching from leaking navigation intent
-  { key: "X-DNS-Prefetch-Control", value: "on" },
+  // Disable DNS pre-fetching to avoid leaking navigation intent
+  { key: "X-DNS-Prefetch-Control", value: "off" },
+  // Vercel currently adds a wildcard CORS header; pin browser access to Avora.
+  { key: "Access-Control-Allow-Origin", value: "https://www.avoraventure.com" },
   // Clickjacking protection (belt-and-suspenders alongside CSP frame-ancestors)
   { key: "X-Frame-Options", value: "DENY" },
   // Prevent MIME sniffing

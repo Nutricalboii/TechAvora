@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import ServicesPage from './ServicesPage';
 
 export const metadata: Metadata = {
   title: 'AI Data Operations & Implementation Services',
@@ -7,4 +8,11 @@ export const metadata: Metadata = {
   alternates: { canonical: '/services' },
 };
 
-export { default } from './ServicesPage';
+type ServicesRouteProps = {
+  searchParams: Promise<{ stage?: string | string[] }>;
+};
+
+export default async function ServicesRoute({ searchParams }: ServicesRouteProps) {
+  const { stage } = await searchParams;
+  return <ServicesPage initialStageParam={Array.isArray(stage) ? stage[0] : stage} />;
+}

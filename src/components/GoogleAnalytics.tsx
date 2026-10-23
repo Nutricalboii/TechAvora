@@ -26,8 +26,12 @@ function readAnalyticsConsent(): 'granted' | 'denied' | null {
   }
 
   if (typeof window !== 'undefined') {
-    const stored = window.localStorage.getItem(CONSENT_KEY);
-    if (stored === 'granted' || stored === 'denied') return stored;
+    try {
+      const stored = window.localStorage.getItem(CONSENT_KEY);
+      if (stored === 'granted' || stored === 'denied') return stored;
+    } catch {
+      return null;
+    }
   }
 
   return null;

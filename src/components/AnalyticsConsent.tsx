@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useSyncExternalStore } from 'react';
 
 const CONSENT_KEY = 'avora-analytics-consent';
 const CONSENT_COOKIE = 'avora_analytics_consent';
@@ -9,27 +9,41 @@ const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 type Consent = 'granted' | 'denied' | null;
 
+function readConsent(): Consent {
+  const cookieValue = document.cookie
+    .split('; ')
+    .find((entry) => entry.startsWith(`${CONSENT_COOKIE}=`))
+    ?.split('=')[1];
+  if (cookieValue === 'granted' || cookieValue === 'denied') return cookieValue;
+
+  try {
+    const storedValue = window.localStorage.getItem(CONSENT_KEY);
+    return storedValue === 'granted' || storedValue === 'denied' ? storedValue : null;
+  } catch {
+    return null;
+  }
+}
+
+function subscribeToConsent(onChange: () => void) {
+  window.addEventListener('avora:analytics-consent', onChange);
+  window.addEventListener('avora:open-consent', onChange);
+  return () => {
+    window.removeEventListener('avora:analytics-consent', onChange);
+    window.removeEventListener('avora:open-consent', onChange);
+  };
+}
+
 export default function AnalyticsConsent() {
-  const [consent, setConsent] = useState<Consent>(null);
-
-  useEffect(() => {
-    const cookieConsent = document.cookie
-      .split('; ')
-      .find((entry) => entry.startsWith(`${CONSENT_COOKIE}=`))
-      ?.split('=')[1] as Consent;
-    const storedConsent = window.localStorage.getItem(CONSENT_KEY) as Consent;
-    setConsent(cookieConsent || storedConsent);
-
-    const reopen = () => setConsent(null);
-    window.addEventListener('avora:open-consent', reopen);
-    return () => window.removeEventListener('avora:open-consent', reopen);
-  }, []);
+  const consent = useSyncExternalStore(subscribeToConsent, readConsent, () => null);
 
   const saveConsent = (value: Exclude<Consent, null>) => {
-    window.localStorage.setItem(CONSENT_KEY, value);
+    try {
+      window.localStorage.setItem(CONSENT_KEY, value);
+    } catch {
+      // The consent cookie remains the source of truth if storage is restricted.
+    }
     const secure = window.location.protocol === 'https:' ? '; Secure' : '';
     document.cookie = `${CONSENT_COOKIE}=${value}; Max-Age=31536000; Path=/; SameSite=Lax${secure}`;
-    setConsent(value);
     window.dispatchEvent(new CustomEvent('avora:analytics-consent', { detail: value }));
   };
 
