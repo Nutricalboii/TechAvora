@@ -12,6 +12,7 @@ export const metadata: Metadata = {
       'High-quality AI data and production-ready AI solutions from Avora Ventures.',
     url: siteConfig.url,
     type: 'website',
+    images: [{ url: `${siteConfig.url}/og`, width: 1200, height: 630, alt: 'Avora Ventures AI data operations' }],
   },
 };
 

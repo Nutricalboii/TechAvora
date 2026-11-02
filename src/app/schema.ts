@@ -17,16 +17,25 @@ export function generateSchema() {
       description: siteConfig.description,
       areaServed: 'Worldwide',
       knowsAbout: siteConfig.keywords,
-      sameAs: [
-        siteConfig.links.linkedin,
-        siteConfig.links.twitter,
-        siteConfig.links.github,
-      ].filter(Boolean),
+      // Only official brand profiles belong here; the code repository is not
+      // an organizational identity profile.
+      sameAs: [siteConfig.links.linkedin, siteConfig.links.twitter].filter(Boolean),
       contactPoint: {
         '@type': 'ContactPoint',
-        contactType: 'customer support',
+        contactType: 'sales',
         email: siteConfig.contactEmail,
         availableLanguage: 'English',
+      },
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'AI data operations and implementation services',
+        itemListElement: [
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'AI solutions and implementation' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Synthetic data generation' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Data annotation' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Data labeling' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Data quality assurance' } },
+        ],
       },
     },
     {

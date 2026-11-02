@@ -5,9 +5,8 @@ import { siteConfig } from '@/config/site';
 
 const BASE_URL = siteConfig.url;
 
-// Static date — update this when content changes, not on every deploy.
-// Using new Date() here would make the sitemap uncacheable and mislead crawlers.
-const LAST_MODIFIED = new Date('2026-10-11');
+// Update this when indexable page content changes, not on every deploy.
+const LAST_MODIFIED = new Date('2026-11-01');
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -22,12 +21,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: LAST_MODIFIED,
       changeFrequency: 'monthly',
       priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/work`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: 'monthly',
-      priority: 0.8,
     },
     {
       url: `${BASE_URL}/blog`,

@@ -2,7 +2,7 @@
 
 import Script from 'next/script';
 import { usePathname } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useSyncExternalStore } from 'react';
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 const CONSENT_KEY = 'avora-analytics-consent';
@@ -35,6 +35,11 @@ function readAnalyticsConsent(): 'granted' | 'denied' | null {
   }
 
   return null;
+}
+
+function subscribeToAnalyticsConsent(onChange: () => void) {
+  window.addEventListener('avora:analytics-consent', onChange);
+  return () => window.removeEventListener('avora:analytics-consent', onChange);
 }
 
 function cleanLabel(value: string, fallback: string): string {
@@ -97,6 +102,11 @@ export function trackAnalyticsEvent(
 
 export default function GoogleAnalytics() {
   const pathname = usePathname();
+  const consent = useSyncExternalStore(
+    subscribeToAnalyticsConsent,
+    () => readAnalyticsConsent() ?? 'unset',
+    () => 'unset',
+  );
 
   useEffect(() => {
     if (!GA_ID) return;
@@ -112,6 +122,8 @@ export default function GoogleAnalytics() {
       window.gtag('config', GA_ID, {
         page_path: pathname,
         page_title: document.title,
+        allow_google_signals: false,
+        allow_ad_personalization_signals: false,
       });
     };
 
@@ -192,9 +204,9 @@ export default function GoogleAnalytics() {
       document.removeEventListener('change', handleChange);
       document.removeEventListener('submit', handleSubmit, true);
     };
-  }, [pathname]);
+  }, [pathname, consent]);
 
-  if (!GA_ID) return null;
+  if (!GA_ID || consent !== 'granted') return null;
 
   return (
     <>
@@ -202,21 +214,6 @@ export default function GoogleAnalytics() {
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
         strategy="afterInteractive"
       />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){window.dataLayer.push(arguments);}
-          window.gtag = gtag;
-          gtag('js', new Date());
-          gtag('consent', 'default', {
-            analytics_storage: 'denied',
-            ad_storage: 'denied',
-            ad_user_data: 'denied',
-            ad_personalization: 'denied',
-            wait_for_update: 500
-          });
-        `}
-      </Script>
     </>
   );
 }

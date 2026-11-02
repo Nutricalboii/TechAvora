@@ -1,0 +1,24 @@
+# Avora Ventures
+
+> Avora Ventures helps enterprises prepare high-quality AI data and build production-ready AI solutions through an integrated delivery framework.
+
+Avora's public service areas include:
+
+- AI solutions and implementation: https://www.avoraventure.com/services?stage=0
+- Synthetic data generation: https://www.avoraventure.com/services?stage=1
+- Data annotation: https://www.avoraventure.com/services?stage=2
+- Data labeling: https://www.avoraventure.com/services?stage=3
+- Data quality assurance: https://www.avoraventure.com/services?stage=4
+
+Useful pages:
+
+- Home: https://www.avoraventure.com/
+- Services: https://www.avoraventure.com/services
+- Insights and research links: https://www.avoraventure.com/blog
+- Privacy policy: https://www.avoraventure.com/privacy
+- Terms of service: https://www.avoraventure.com/terms
+- Contact: https://www.avoraventure.com/#contact
+
+Contact: avoraglobalus@gmail.com
+
+Avora does not publish pricing on this site. Contact Avora for project-specific scope and pricing.

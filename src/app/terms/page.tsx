@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   title: 'Terms of Service',
   description: 'Terms and conditions for using Avora Ventures services and website.',
   alternates: { canonical: '/terms' },
+  openGraph: {
+    title: 'Terms of Service',
+    description: 'Terms for using the Avora Ventures website and services.',
+    url: 'https://www.avoraventure.com/terms',
+    images: [{ url: 'https://www.avoraventure.com/og', width: 1200, height: 630, alt: 'Avora Ventures' }],
+    type: 'website',
+  },
 };
 
 export default function TermsPage() {
@@ -35,7 +42,7 @@ export default function TermsPage() {
           Terms of Service
         </h1>
         <p className="text-sm text-[var(--foreground-muted)] mb-12">
-          Last updated: September 24, 2026
+          Last updated: October 29, 2026
         </p>
 
         <div className="space-y-8 text-[var(--foreground)]">
@@ -78,7 +85,7 @@ export default function TermsPage() {
             </h2>
             <p className="text-[15px] text-[var(--foreground-muted)] leading-relaxed">
               All website content, design, and branding are the intellectual property of Avora
-              Venture. Work product delivered to clients under service agreements is governed
+              Ventures or their respective rights holders. Work product delivered to clients under service agreements is governed
               by those agreements.
             </p>
           </section>

@@ -21,7 +21,7 @@ const stages = [
     id: '02',
     stageIndex: 1,
     title: 'Data Generation',
-    desc: 'Solve data scarcity with realistic, privacy-safe synthetic data.',
+    desc: 'Address data scarcity with realistic, privacy-aware synthetic data.',
   },
   {
     id: '03',
@@ -123,7 +123,7 @@ export default function Services() {
         {/* Bottom CTA */}
         <div className="text-center mt-10 sm:mt-14 pt-6 sm:pt-8 border-t border-slate-200 max-w-xl mx-auto">
           <p className="text-slate-700 text-xs sm:text-base mb-4 sm:mb-6 font-medium">
-            Explore methodologies, case studies, and lifecycle detail across all five disciplines.
+            Explore methodologies, service details, and lifecycle information across all five disciplines.
           </p>
           <Link
             href="/services"

@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     images: [
       {
-        url: `${siteConfig.url}${siteConfig.ogImage}`,
+        url: `${siteConfig.url}/og`,
         width: 1200,
         height: 630,
         alt: `${siteConfig.name} — AI Infrastructure & Data Operations`,
@@ -78,7 +78,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: `${siteConfig.name} | Production AI Data Operations`,
     description: siteConfig.description,
-    images: [`${siteConfig.url}${siteConfig.ogImage}`],
+    images: [`${siteConfig.url}/og`],
   },
   metadataBase: new URL(siteConfig.url),
   verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
@@ -106,6 +106,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${dmSans.variable} ${bebasNeue.variable} ${ibmPlexMono.variable}`}>
       <head>
+        {process.env.NEXT_PUBLIC_GA_ID ? (
+          <script
+            id="google-analytics-consent-default"
+            dangerouslySetInnerHTML={{
+              __html: `window.dataLayer = window.dataLayer || []; function gtag(){window.dataLayer.push(arguments);} window.gtag = gtag; gtag('js', new Date()); gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });`,
+            }}
+          />
+        ) : null}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script

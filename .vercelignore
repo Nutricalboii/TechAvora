@@ -1,0 +1,12 @@
+# Local environment files can contain secrets; configure production values in Vercel.
+.env*
+
+# Local-only exports, audit notes, and generated media are not part of the site.
+/brag-output*/
+/tmp/
+/output/
+/docs/
+/Claude output/
+/graphify-out/
+*.docx
+*.tsbuildinfo

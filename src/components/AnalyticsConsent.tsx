@@ -9,6 +9,8 @@ const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 type Consent = 'granted' | 'denied' | null;
 
+let preferencesOpen = false;
+
 function readConsent(): Consent {
   const cookieValue = document.cookie
     .split('; ')
@@ -24,59 +26,95 @@ function readConsent(): Consent {
   }
 }
 
+function getSnapshot() {
+  return `${readConsent() ?? 'unset'}:${preferencesOpen ? 'open' : 'closed'}`;
+}
+
 function subscribeToConsent(onChange: () => void) {
-  window.addEventListener('avora:analytics-consent', onChange);
-  window.addEventListener('avora:open-consent', onChange);
+  const openPreferences = () => {
+    preferencesOpen = true;
+    onChange();
+  };
+  const closePreferences = () => {
+    preferencesOpen = false;
+    onChange();
+  };
+  const updateConsent = () => {
+    preferencesOpen = false;
+    onChange();
+  };
+
+  window.addEventListener('avora:analytics-consent', updateConsent);
+  window.addEventListener('avora:open-consent', openPreferences);
+  window.addEventListener('avora:close-consent', closePreferences);
   return () => {
-    window.removeEventListener('avora:analytics-consent', onChange);
-    window.removeEventListener('avora:open-consent', onChange);
+    window.removeEventListener('avora:analytics-consent', updateConsent);
+    window.removeEventListener('avora:open-consent', openPreferences);
+    window.removeEventListener('avora:close-consent', closePreferences);
   };
 }
 
 export default function AnalyticsConsent() {
-  const consent = useSyncExternalStore(subscribeToConsent, readConsent, () => null);
+  const [consentValue, isOpen] = useSyncExternalStore(
+    subscribeToConsent,
+    getSnapshot,
+    () => 'unset:closed',
+  ).split(':');
+  const consent: Consent = consentValue === 'granted' || consentValue === 'denied'
+    ? consentValue
+    : null;
 
   const saveConsent = (value: Exclude<Consent, null>) => {
     try {
       window.localStorage.setItem(CONSENT_KEY, value);
     } catch {
-      // The consent cookie remains the source of truth if storage is restricted.
+      // The consent cookie remains available if browser storage is restricted.
     }
     const secure = window.location.protocol === 'https:' ? '; Secure' : '';
     document.cookie = `${CONSENT_COOKIE}=${value}; Max-Age=31536000; Path=/; SameSite=Lax${secure}`;
     window.dispatchEvent(new CustomEvent('avora:analytics-consent', { detail: value }));
   };
 
-  if (!GA_ID || consent !== null) return null;
+  if (!GA_ID || (consent !== null && isOpen !== 'open')) return null;
 
   return (
     <aside
-      role="dialog"
+      role="region"
       aria-label="Analytics preferences"
       data-analytics-ignore="true"
       className="fixed inset-x-4 bottom-4 z-[100] mx-auto max-w-3xl rounded-2xl border border-slate-200 bg-white p-5 shadow-2xl sm:flex sm:items-center sm:gap-6"
     >
       <p className="flex-1 text-sm leading-relaxed text-slate-700">
-        We use Google Analytics only to understand aggregate site usage and improve Avora. Read our{' '}
+        Avora uses Vercel Analytics for aggregate site usage. Google Analytics is optional and runs only
+        with your permission. Read our{' '}
         <Link href="/privacy" className="font-semibold text-[#8a6200] underline">
           Privacy Policy
         </Link>{' '}
         for details.
       </p>
-      <div className="mt-4 flex shrink-0 gap-3 sm:mt-0">
+      <div className="mt-4 flex shrink-0 flex-wrap gap-3 sm:mt-0">
+        {consent !== null && (
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new Event('avora:close-consent'))}
+            className="rounded-full border border-slate-300 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-slate-700"
+          >
+            Close
+          </button>
+        )}
         <button
           type="button"
           onClick={() => saveConsent('denied')}
           className="rounded-full border border-slate-300 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-slate-700"
         >
-          Decline
+          Decline Google Analytics
         </button>
         <button
           type="button"
           onClick={() => saveConsent('granted')}
           className="rounded-full bg-slate-900 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white"
         >
-          Allow analytics
+          Allow Google Analytics
         </button>
       </div>
     </aside>

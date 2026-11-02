@@ -261,3 +261,29 @@
     animation: pipeline-expand 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  html,
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal-up,
+  .reveal-fade,
+  .stagger > *,
+  .hero-headline,
+  .hero-sub,
+  .services-header-el,
+  .pipeline-step,
+  .blog-header > *,
+  .blog-card {
+    opacity: 1 !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+}

@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   title: 'Privacy Policy',
   description: 'How Avora Ventures collects, uses, and protects your personal information.',
   alternates: { canonical: '/privacy' },
+  openGraph: {
+    title: 'Privacy Policy',
+    description: 'How Avora Ventures handles contact inquiries, analytics, and privacy preferences.',
+    url: 'https://www.avoraventure.com/privacy',
+    images: [{ url: 'https://www.avoraventure.com/og', width: 1200, height: 630, alt: 'Avora Ventures' }],
+    type: 'website',
+  },
 };
 
 export default function PrivacyPage() {
@@ -35,7 +42,7 @@ export default function PrivacyPage() {
           Privacy Policy
         </h1>
         <p className="text-sm text-[var(--foreground-muted)] mb-12">
-          Last updated: September 24, 2026
+          Last updated: October 29, 2026
         </p>
 
         <div className="space-y-8 text-[var(--foreground)]">
@@ -44,9 +51,10 @@ export default function PrivacyPage() {
               1. Information we collect
             </h2>
             <p className="text-[15px] text-[var(--foreground-muted)] leading-relaxed">
-              When you submit the contact form on our website, we collect your name, email
-              address, company name (optional), selected service type, industry, and your
-              message. This information is used solely to respond to your inquiry.
+              When you submit the contact form, we collect your name, email address, selected
+              service area, and message. Do not include sensitive personal or confidential
+              information in the form. We use these details to respond to your inquiry and
+              discuss a potential engagement.
             </p>
           </section>
 
@@ -66,8 +74,12 @@ export default function PrivacyPage() {
               3. Data storage
             </h2>
             <p className="text-[15px] text-[var(--foreground-muted)] leading-relaxed">
-              Form submissions are stored securely, accessible only to the Avora Ventures team.
-              We retain this data for up to 24 months or until you request deletion.
+              The contact form sends submissions through the website API to an Avora-configured
+              Google Apps Script endpoint for delivery and storage. Google may process the
+              information as part of that service. Access to resulting records is controlled
+              through Avora&apos;s Google account and script permissions. Inquiry information is
+              retained only as long as needed to respond, manage a potential engagement, or meet
+              legal obligations; contact us to request deletion.
             </p>
           </section>
 
@@ -107,10 +119,13 @@ export default function PrivacyPage() {
               6. Analytics
             </h2>
             <p className="text-[15px] text-[var(--foreground-muted)] leading-relaxed">
-              We use Vercel Analytics for anonymous, aggregate usage statistics. With your
-              permission, we also use Google Analytics to understand traffic sources, page views,
-              and broad interaction patterns. We do not send contact form names, email addresses,
-              or message content to Google Analytics.
+              Vercel Analytics is used for aggregate website usage measurement and is designed
+              to operate without analytics cookies. Google Analytics loads only after you choose
+              to allow it; declining prevents Avora&apos;s Google Analytics events from being sent.
+              With permission, Avora measures page views, traffic sources, and limited interaction
+              events such as service selection and successful form submission. Contact form names,
+              email addresses, and message text are not sent to Google Analytics. You can change
+              your Google Analytics choice using Cookie settings in the site footer.
             </p>
           </section>
 

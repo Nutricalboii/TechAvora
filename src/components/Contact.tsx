@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { cn } from '@/lib/cn';
+import { siteConfig } from '@/config/site';
 import { useReveal } from '@/hooks/useInView';
 import { trackAnalyticsEvent } from '@/components/GoogleAnalytics';
 
@@ -89,7 +90,7 @@ export default function Contact() {
     >
       {/* Screen reader live region — announces form success/error without page reload */}
       <div aria-live="polite" aria-atomic="true" className="sr-only">
-        {success && 'Your message was sent successfully. We will follow up within 1 business day.'}
+        {success && 'Your inquiry was submitted successfully. Our team will review the information.'}
         {error && `Form error: ${error}`}
       </div>
       <div className="max-w-4xl mx-auto px-5 sm:px-8 md:px-10 lg:px-12 relative z-10">
@@ -139,7 +140,7 @@ export default function Contact() {
                   Submission received
                 </h3>
                 <p className="text-base text-slate-700 max-w-sm mx-auto">
-                  We have received your details. Our team will review the provided context and follow up within 1 business day.
+                  We have received your details. Our team will review the provided context and follow up.
                 </p>
               </div>
             ) : (
@@ -257,6 +258,15 @@ export default function Contact() {
                 >
                   {isSubmitting ? 'Sending...' : 'Start a Conversation'}
                 </button>
+                <p className="text-center text-sm text-slate-600">
+                  Prefer email?{' '}
+                  <a
+                    href={`mailto:${siteConfig.contactEmail}?subject=${encodeURIComponent('Project inquiry — Avora Ventures')}`}
+                    className="font-semibold text-[#8a6200] underline underline-offset-2"
+                  >
+                    Contact Avora directly
+                  </a>
+                </p>
               </form>
             )}
           </div>

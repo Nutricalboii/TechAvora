@@ -16,7 +16,7 @@ const stages = [
       'Your team has data. Your competitors have AI. The gap is an engineering problem, not a strategy one. AI Solutions takes quality data and a trained model and turns it into a production system — one that survives real-world conditions, satisfies governance requirements, and improves over time.',
     why: [
       { title: 'Start with the problem', body: 'Fall in love with the problem, not your favourite algorithm. Specific, financially quantified objectives — not a desire to "use AI."' },
-      { title: 'Invest in data quality', body: '"Garbage in, gospel out" is as dangerous as garbage in, garbage out. Nearly 30% of successful AI projects go to data remediation — and it pays off.' },
+      { title: 'Invest in data quality', body: 'Data quality issues can require costly remediation. Assessing data early helps teams identify gaps before model development.' },
       { title: 'Choose the right tool', body: 'Resist deep learning by default — the simplest appropriate model often wins and is far easier to govern.' },
       { title: 'Design for collaboration', body: 'Build workflows where AI handles routine work and humans focus on exceptions. AI as advisor, not autopilot.' },
       { title: 'Plan the full lifecycle', body: 'Think deployment, monitoring, and retirement from day one. The first deployment is a hypothesis, not a final answer.' },
@@ -29,18 +29,6 @@ const stages = [
       { name: 'Explainability Layer', desc: 'Enterprise-grade explainability that satisfies audit requirements and builds user confidence in AI-generated outputs — transparent AI for regulated environments.' },
       { name: 'Production Deployment & Monitoring', desc: 'CI/CD processes, drift detection, alerting, and human-in-the-loop override capture that feeds back into the model.' },
     ],
-    caseStudy: {
-      sector: 'Retail · Multi-SKU Demand Forecasting',
-      headline: 'A custom predictive ensemble integrated into on-premise infrastructure delivered a return that justified the entire program within the first quarter',
-      what: 'Designed and integrated a custom predictive ensemble model into a client\'s on-premise cloud infrastructure for multi-horizon demand forecasting across thousands of SKUs.',
-      how: 'Structured discovery tailored to project complexity mapped existing data flows and identified distribution shift patterns. Ensemble model with complementary techniques per forecasting horizon. Enterprise-grade explainability layer added to satisfy internal procurement audit requirements. System presented outputs as suggested actions requiring explicit planner confirmation — never full autopilot. Every override captured and fed back via imitation learning.',
-      result: 'Significant reduction in manual planning overhead in the first quarter. ROI demonstrated strongly at the 36-month projection horizon. Planner satisfaction improved substantially. System now handles routine forecasting while planners focus on exception management.',
-      metrics: [
-        { label: 'Manual planning overhead', value: 'Reduced in first quarter' },
-        { label: 'ROI at 36-month horizon', value: 'Investment-grade return' },
-        { label: 'Planner satisfaction', value: 'Significantly improved' },
-      ],
-    },
     myths: [],
   },
   {
@@ -50,33 +38,21 @@ const stages = [
     subtitle: 'Engineering synthetic data for innovation, privacy, and scale',
     accent: '#B8860B',
     intro:
-      'You can\'t train reliable AI on rare events you\'ve never seen — and you can\'t share sensitive data without legal risk. Data generation solves both problems: creating realistic, privacy-safe datasets across any data type, at any scale, without waiting for real-world collection.',
+      'You can\'t train reliable AI on rare events you\'ve never seen, and sensitive data can bring privacy and governance concerns. Data generation can create realistic, privacy-aware datasets across data types, with validation needed for each intended use.',
     why: [
       { title: 'Computer vision and image data', body: 'Synthetic images, video frames, and 3D scenes for object detection, segmentation, and autonomous systems — without expensive real-world capture or annotation at scale.' },
       { title: 'Documents and text', body: 'Realistic synthetic invoices, contracts, medical records, and structured forms — enabling document AI training while eliminating privacy exposure.' },
       { title: 'Sensor and IoT data', body: 'Synthetic telemetry and IoT streams that include rare failure modes and edge conditions almost never present in production logs.' },
       { title: 'Time-series data', body: 'High-fidelity temporal patterns for demand forecasting, financial modeling, and predictive maintenance.' },
       { title: 'Conversational data', body: 'Diverse synthetic dialogue, intent variations, and edge-case utterances that create robust training data for chatbots and voice assistants across languages.' },
-      { title: 'Structured/tabular data', body: 'Privacy-safe synthetic customer, transaction, and clinical records — analytically valid, GDPR-compliant, and ready for cross-team collaboration.' },
+      { title: 'Structured/tabular data', body: 'Synthetic customer, transaction, and clinical-style records, evaluated for analytical utility and privacy risk before any intended sharing.' },
     ],
     methods: [
       { name: 'Rule-Based & Heuristic', desc: 'Explicit rules and distributions — domain knowledge encoded directly. Transparent, efficient, easy to validate. Best for structured data with well-understood patterns.' },
       { name: 'Statistical Modeling', desc: 'Fit distributions, then sample — univariate and multivariate distributions, copulas, and time-series models. Mathematically grounded, interpretable.' },
       { name: 'Generative AI Models', desc: 'GANs, VAEs, autoregressive models, and diffusion models trained to reproduce complex, high-dimensional patterns. Best for images, language, and sensor data.' },
-      { name: 'Privacy-Preserving Techniques', desc: 'Differential privacy guarantees, synthetic record generation with statistical validity, and compliance-ready outputs safe for cross-team sharing.' },
+      { name: 'Privacy-Preserving Techniques', desc: 'Privacy-risk evaluation, differential privacy methods where appropriate, and documentation to support security and compliance review.' },
     ],
-    caseStudy: {
-      sector: 'Healthcare · Rare Disease Diagnostics',
-      headline: 'Synthetic imaging data took a diagnostic AI from 87 confirmed cases to a production-ready training library',
-      what: 'A research consortium building early-detection AI for a pediatric retinal disorder had collected only 87 confirmed cases in five years — nowhere near enough to train a reliable model, and real data collection would take decades.',
-      how: 'Applied a generative model with domain-constrained outputs — separating disease stage, biomarker level, and imaging artifacts in the latent space. Hard biological constraints rejected implausible samples. Differential privacy budget enforced throughout to ensure the resulting library was safe for multi-institutional sharing.',
-      result: 'Training corpus scaled to synthetic volumes across 12 genetic subtypes, enabling the first statistically valid model training run. Retinal specialists in a blinded review could barely distinguish synthetic from real — landing just above chance accuracy.',
-      metrics: [
-        { label: 'Diagnostic AUC improvement', value: 'Significant uplift' },
-        { label: 'Research groups activated', value: 'Scaled up' },
-        { label: 'Time to first working prototype', value: 'Weeks, not years' },
-      ],
-    },
     myths: [
       { myth: 'Synthetic data is just fancy data augmentation.', reality: 'Augmentation varies existing samples; true generation creates novel, plausible combinations never observed in the source data.' },
       { myth: 'If it\'s synthetic, it\'s automatically private.', reality: 'Poorly generated data can memorize rare real combinations. Genuine privacy needs differential privacy and careful validation — not just the label "synthetic."' },
@@ -103,18 +79,6 @@ const stages = [
       { name: 'Audio', desc: 'Specialized transcription editors — transcription, speaker diarization, emotion tagging, acoustic event labeling.' },
       { name: 'Video', desc: 'Frame-by-frame annotation with interpolation — object tracking across time without labeling every single frame by hand.' },
     ],
-    caseStudy: {
-      sector: 'AgTech · Precision Agriculture — Drone Telemetry',
-      headline: 'Annotated multispectral drone imagery across 14 crop stress classes cut field scouting time from hours to minutes',
-      what: 'Traditional crop scouting — agronomists walking fields to visually assess plant health — was labor-intensive, subjective, and too slow to catch nutrient deficiencies or pests before real damage was done.',
-      how: 'Built a domain ontology covering stress type, severity, growth stage, and confidence tags for ambiguous cases, jointly developed with plant pathologists and agronomists. Model-assisted pre-labeling reduced manual load significantly. Fleiss\' Kappa target ≥ 0.91 required before batch sign-off.',
-      result: 'Hundreds of thousands of multispectral frames delivered at an inter-annotator Kappa exceeding the target. An EfficientNet-B3 model produced per-pixel stress maps aggregated into field-level health scores and prescriptive action maps.',
-      metrics: [
-        { label: 'Annotation precision', value: 'High accuracy achieved' },
-        { label: 'Inter-annotator agreement', value: 'Above target Kappa' },
-        { label: 'Field scouting time', value: 'Dramatically reduced' },
-      ],
-    },
     myths: [
       { myth: '"Garbage in, gospel out"', reality: 'Inconsistent labels don\'t just add noise — they create dangerous overconfidence when test data shares the same annotation bias as training data.' },
       { myth: 'Scalability misjudgment', reality: 'What\'s manageable at a small pilot becomes infeasible at millions without an industrialized process.' },
@@ -130,7 +94,7 @@ const stages = [
     intro:
       'Unstructured data — images, text, audio, and sensor streams — is unusable for machine learning until it\'s converted into structured, classified datasets. Labeling is that conversion: turning raw inputs into the organized training sets that let models generalize across real-world variation.',
     why: [
-      { title: 'Quality beats quantity', body: 'A reduction in label noise can F1-score by 15–25% on complex tasks — more than most architecture tweaks.' },
+      { title: 'Quality beats quantity', body: 'Label noise can reduce model quality. The impact depends on the task, data distribution, and evaluation method, so teams should measure it against a defined baseline.' },
       { title: 'Bias amplification risk', body: 'Systematic labeling inconsistencies don\'t just add noise — they can embed and amplify unfair or unsafe model behavior.' },
       { title: 'Diminishing returns on volume', body: 'Beyond a point, more poorly labeled data adds less value than improving the labeling of what you already have.' },
       { title: 'Transfer-learning dependency', body: 'Low-quality fine-tuning labels compromise a pretrained model\'s ability to generalize from its broad training.' },
@@ -143,18 +107,6 @@ const stages = [
       { name: 'Translation & Transcription', desc: 'Converting speech to text, one language to another, or one format to another.' },
       { name: 'Extraction & Relations', desc: 'Pulling entities, relationships, and attributes from unstructured text — the backbone of clinical and legal AI.' },
     ],
-    caseStudy: {
-      sector: 'Pharmaceutical · Clinical Document Processing',
-      headline: 'Millions of pages of clinical trial documents labeled across 47 data point categories — zero pages required re-extraction post-delivery',
-      what: 'A major pharmaceutical company was drowning in manual review of consent forms, adverse event reports, lab results, and physician notes — slow, expensive, and prone to compliance risk.',
-      how: 'Operationalized OCR-based layout analysis with a LayoutLMv3-based model proposing initial extractions for expert review. Consensus verification protocol with triple-review on ambiguous table regions. Statistical QA gate: minimum F1 and Cohen\'s Kappa required per category before delivery.',
-      result: 'Millions of pages processed across dozens of document categories. Clinical data managers redirected from extraction to protocol optimization and patient safety. Estimated annual savings in the millions.',
-      metrics: [
-        { label: 'Manual document processing time', value: 'Reduced dramatically' },
-        { label: 'Data entry errors in submissions', value: 'Sharply reduced' },
-        { label: 'Median query resolution time', value: 'Days, not weeks' },
-      ],
-    },
     myths: [],
   },
   {
@@ -182,18 +134,6 @@ const stages = [
       { name: 'Remediation & Correction', desc: 'Standardize, validate, enrich, deduplicate, and correct — building a clean canonical dataset.' },
       { name: 'Monitoring & Improvement', desc: 'Live dashboards, automated pipelines, and regular audits catch drift before it becomes a problem.' },
     ],
-    caseStudy: {
-      sector: 'Retail · Predictive Inventory — Multi-Site Operations',
-      headline: 'Data quality overhaul revealed that a significant share of inventory anomalies traced back to upstream data entry errors',
-      what: 'A multi-site retailer facing stockouts and overstocking discovered that their forecasting models were underperforming not because of model choice — but because input data had accuracy, consistency, and timeliness failures across multiple source systems.',
-      how: 'End-to-end DQA lifecycle: profiling to establish a quality baseline, root-cause analysis tracing defects to specific upstream entry points, targeted remediation of master data, and a continuous monitoring layer with automated alerting on drift.',
-      result: 'Significant reduction in inventory anomalies traced to data defects. Forecasting model performance improved without any model changes — purely from cleaner inputs. Data stewards established for ongoing governance.',
-      metrics: [
-        { label: 'Inventory anomalies from data errors', value: 'Substantially reduced' },
-        { label: 'Forecast accuracy improvement', value: 'Meaningful uplift' },
-        { label: 'Ongoing monitoring', value: 'Automated & live' },
-      ],
-    },
     myths: [],
   },
 ];
@@ -378,41 +318,6 @@ function MethodGrid({ methods }: { methods: { name: string; desc: string }[] }) 
 }
 
 // ─────────────────────────────────────────────────────────────────────
-// CASE STUDY CARD
-// ─────────────────────────────────────────────────────────────────────
-
-function CaseStudyCard({ cs }: { cs: typeof stages[0]['caseStudy'] }) {
-  return (
-    <div className="bg-slate-900 rounded-2xl p-6 sm:p-10 lg:p-12 text-white">
-      <p className="font-mono text-xs tracking-[0.25em] uppercase text-[#D4AF37] mb-3 sm:mb-5">{cs.sector}</p>
-      <h3 className="font-sans text-lg sm:text-xl lg:text-3xl leading-relaxed text-white mb-6 sm:mb-8 font-semibold tracking-wide">{cs.headline}</h3>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-8 mb-7 sm:mb-10">
-        {[
-          { label: 'Challenge', body: cs.what },
-          { label: 'Approach', body: cs.how },
-          { label: 'Outcome', body: cs.result },
-        ].map((col, i) => (
-          <div key={i} className={`${i < 2 ? 'md:border-r md:border-white/10 md:pr-8 pb-4 md:pb-0 border-b md:border-b-0 border-white/10' : ''}`}>
-            <p className="font-mono text-xs tracking-[0.2em] uppercase text-[#D4AF37] mb-2 sm:mb-4 font-bold">{col.label}</p>
-            <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-medium">{col.body}</p>
-          </div>
-        ))}
-      </div>
-
-      <div className="border-t border-white/10 pt-5 sm:pt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-        {cs.metrics.map((m, i) => (
-          <div key={i} className="text-center sm:text-left">
-            <p className="font-mono text-xs tracking-widest uppercase text-slate-400 mb-1.5 sm:mb-2">{m.label}</p>
-            <p className="text-[#D4AF37] font-sans text-base sm:text-lg font-bold">{m.value}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-// ─────────────────────────────────────────────────────────────────────
 // STAGE DETAIL PANEL
 // ─────────────────────────────────────────────────────────────────────
 
@@ -482,12 +387,6 @@ function StagePanel({ stage }: { stage: typeof stages[0] }) {
         <MethodGrid methods={stage.methods} />
       </div>
 
-      {/* Case Study */}
-      <div>
-        <h3 className="font-mono text-xs sm:text-sm tracking-[0.25em] uppercase text-[#B8860B] mb-5 sm:mb-8 font-bold">Case Study</h3>
-        <CaseStudyCard cs={stage.caseStudy} />
-      </div>
-
       {/* Myths / Pitfalls */}
       {stage.myths.length > 0 && (
         <div>
@@ -513,10 +412,10 @@ function StagePanel({ stage }: { stage: typeof stages[0] }) {
 }
 
 // ─────────────────────────────────────────────────────────────────────
-// SERVICES OVERVIEW GRID — all 6 on one page
+// SERVICES OVERVIEW GRID — all five service lines
 // ─────────────────────────────────────────────────────────────────────
 
-const stageIcons = ['◈', '◉', '◎', '◆', '◇', '❖'];
+const stageIcons = ['◈', '◉', '◎', '◆', '◇'];
 
 function ServicesOverviewGrid({ onDiveDeep, onSelectStage }: { onDiveDeep: () => void; onSelectStage: (i: number) => void }) {
   return (
@@ -541,9 +440,9 @@ function ServicesOverviewGrid({ onDiveDeep, onSelectStage }: { onDiveDeep: () =>
                 </div>
 
                 {/* Title */}
-                <h3 className="font-heading text-lg sm:text-xl lg:text-2xl uppercase tracking-wide text-slate-900 mb-2 sm:mb-3 leading-tight">
+                <h2 className="font-heading text-lg sm:text-xl lg:text-2xl uppercase tracking-wide text-slate-900 mb-2 sm:mb-3 leading-tight">
                   {stage.title}
-                </h3>
+                </h2>
 
                 {/* Intro excerpt */}
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium mb-4 sm:mb-5">
@@ -593,7 +492,7 @@ function ServicesOverviewGrid({ onDiveDeep, onSelectStage }: { onDiveDeep: () =>
             <span>Dive Deep</span>
             <span className="text-sm">→</span>
           </button>
-          <p className="mt-2.5 sm:mt-3 text-[10px] sm:text-xs text-slate-400 font-mono tracking-wide">Explore methodologies, lifecycles & case studies</p>
+          <p className="mt-2.5 sm:mt-3 text-[10px] sm:text-xs text-slate-400 font-mono tracking-wide">Explore methodologies and service lifecycles</p>
         </div>
       </div>
     </div>
@@ -672,11 +571,11 @@ function ServicesContent({ initialStageParam }: { initialStageParam?: string }) 
             <span>Back to home</span>
           </Link>
           <h1 className="font-heading text-2xl sm:text-4xl md:text-5xl lg:text-7xl uppercase tracking-wide text-slate-900 leading-tight mb-4 sm:mb-6">
-            Six Disciplines.<br />
+            Five Disciplines.<br />
             <span className="text-[#B8860B]">One Framework.</span>
           </h1>
           <p className="text-sm sm:text-lg md:text-xl lg:text-2xl text-slate-700 max-w-3xl leading-relaxed font-medium">
-            Raw data doesn&apos;t become intelligence by accident. It moves through six disciplines, each handing off a more refined asset to the next.
+            Raw data doesn&apos;t become intelligence by accident. It moves through five disciplines, each handing off a more refined asset to the next.
           </p>
         </div>
       </section>
@@ -754,7 +653,7 @@ function ServicesContent({ initialStageParam }: { initialStageParam?: string }) 
                 )}
                 {selectedStage === 0 && (
                   <p className="text-xs sm:text-sm font-sans text-slate-600 mb-4 text-center font-medium">
-                    Looking for underlying capabilities or specialized execution? Explore our data generation, annotation, and QA services.
+            Looking for underlying capabilities or specialized execution? Explore our data generation, annotation, and quality services.
                   </p>
                 )}
 

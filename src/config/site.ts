@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "Avora Ventures",
   description: "Avora Ventures helps enterprises build production-ready AI with synthetic data generation, data annotation, labeling, data quality assurance, and AI implementation.",
   url: "https://www.avoraventure.com",
-  ogImage: "/og-image.png",
+  ogImage: "/og",
   contactEmail: "avoraglobalus@gmail.com",
   links: {
     github: "https://github.com/Nutricalboii/Avora",

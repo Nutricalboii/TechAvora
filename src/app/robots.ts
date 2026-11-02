@@ -7,23 +7,26 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
-        // Standard crawlers: allow public pages, block API and Next.js internals
+        // Search crawlers can fetch public pages and assets needed to render them.
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/_next/', '/404', '/500'],
+        disallow: ['/api/', '/404', '/500'],
       },
-      // Block AI training scrapers
-      { userAgent: 'GPTBot',          disallow: ['/'] },
-      { userAgent: 'ChatGPT-User',    disallow: ['/'] },
-      { userAgent: 'Claude-Web',      disallow: ['/'] },
-      { userAgent: 'ClaudeBot',       disallow: ['/'] },
-      { userAgent: 'anthropic-ai',    disallow: ['/'] },
+      // Answer-engine discovery/retrieval is separate from model-training access.
+      { userAgent: 'OAI-SearchBot', allow: '/', disallow: ['/api/', '/404', '/500'] },
+      { userAgent: 'ChatGPT-User', allow: '/', disallow: ['/api/', '/404', '/500'] },
+      { userAgent: 'Claude-SearchBot', allow: '/', disallow: ['/api/', '/404', '/500'] },
+      { userAgent: 'Claude-User', allow: '/', disallow: ['/api/', '/404', '/500'] },
+      { userAgent: 'PerplexityBot', allow: '/', disallow: ['/api/', '/404', '/500'] },
+      { userAgent: 'Perplexity-User', allow: '/', disallow: ['/api/', '/404', '/500'] },
+      // Keep model-training and broad dataset crawlers opted out.
+      { userAgent: 'GPTBot', disallow: ['/'] },
+      { userAgent: 'ClaudeBot', disallow: ['/'] },
+      { userAgent: 'anthropic-ai', disallow: ['/'] },
       { userAgent: 'Google-Extended', disallow: ['/'] },
-      { userAgent: 'CCBot',           disallow: ['/'] },
-      { userAgent: 'FacebookBot',     disallow: ['/'] },
-      { userAgent: 'Bytespider',      disallow: ['/'] },
-      { userAgent: 'Amazonbot',       disallow: ['/'] },
-      { userAgent: 'cohere-ai',       disallow: ['/'] },
+      { userAgent: 'CCBot', disallow: ['/'] },
+      { userAgent: 'Bytespider', disallow: ['/'] },
+      { userAgent: 'cohere-ai', disallow: ['/'] },
     ],
     sitemap: `${siteConfig.url}/sitemap.xml`,
   };
