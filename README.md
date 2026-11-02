@@ -1,6 +1,6 @@
-# Avora System Architecture & Development Manual
+# Tech Avora System Architecture & Development Manual
 
-Welcome to the **Avora** platform codebase — an institutional-grade Next.js web application built for AI Infrastructure and Data Operations.
+Welcome to the **Tech Avora** platform codebase — an institutional-grade Next.js web application built for AI Infrastructure and Data Operations.
 
 This manual documents the system architecture, directory structure, database schema, design system, 6-discipline service framework, and documentation index.
 
@@ -38,7 +38,7 @@ graph TD
 
 ## 2. Six Disciplines Service Framework
 
-Avora structures its core capabilities into **Six Disciplines**:
+Tech Avora structures its core capabilities into **Six Disciplines**:
 
 ```mermaid
 graph LR
@@ -121,7 +121,7 @@ erDiagram
 
 ## 5. Design System & Global Tokens
 
-Avora utilizes **Tailwind CSS v4** with a luxury gold aesthetic blending a dark mode profile and alabaster light mode.
+Tech Avora utilizes **Tailwind CSS v4** with a luxury gold aesthetic blending a dark mode profile and alabaster light mode.
 
 | Variable | Light Mode | Dark Mode (`.dark`) | Purpose |
 |---|---|---|---|

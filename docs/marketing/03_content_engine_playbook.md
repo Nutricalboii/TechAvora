@@ -1,6 +1,6 @@
-# Content Engine & Marketing Playbook — Avora Venture
+# Content Engine & Marketing Playbook — Tech Avora
 
-**Brand:** Avora Venture (`avora-ventures`)  
+**Brand:** Tech Avora (`techavora`)
 **Target Voice:** Formality 8/10 | Energy 7/10 | Humor 1/10 | Authority 9/10  
 **Tone:** Production-Grade, Institutional, High-Stakes, Intelligence, Engineered  
 **Date:** August 2026  

@@ -1,6 +1,6 @@
-# Technical & On-Page SEO Strategy — Avora Venture
+# Technical & On-Page SEO Strategy — Tech Avora
 
-**Brand:** Avora Venture (`avora-ventures`)  
+**Brand:** Tech Avora (`techavora`)
 **Industry:** Institutional AI Infrastructure & Data Engineering  
 **Primary Target Audience:** Chief Technology Officers, VPs of AI/ML, Enterprise Data Architects, Heads of Product  
 **Date:** August 2026  

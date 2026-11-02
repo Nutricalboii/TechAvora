@@ -1,7 +1,7 @@
-# 7-Day Fast Client Acquisition Playbook — Avora Venture
+# 7-Day Fast Client Acquisition Playbook — Tech Avora
 
 **Target Goal:** Secure 1 Enterprise AI Consulting Client or Paid Audit in 7 Days  
-**Target Brand:** Avora Venture (`avora-ventures`)  
+**Target Brand:** Tech Avora (`techavora`)
 **Target Buyer Personas:** CTO, VP of AI/ML, Head of Data Engineering, VP of Product  
 **Date:** August 2026  
 

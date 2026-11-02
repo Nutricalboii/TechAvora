@@ -85,7 +85,7 @@ export default function TermsPage() {
             </h2>
             <p className="text-[15px] text-[var(--foreground-muted)] leading-relaxed">
               All website content, design, and branding are the intellectual property of Tech
-              Avora or their respective rights holders. Work product delivered to clients under service agreements is governed
+              Tech Avora or their respective rights holders. Work product delivered to clients under service agreements is governed
               by those agreements.
             </p>
           </section>

@@ -1,6 +1,6 @@
-# Competitor Analysis Report — Avora Venture
+# Competitor Analysis Report — Tech Avora
 
-**Target Brand:** Avora Venture (`avora-ventures`)  
+**Target Brand:** Tech Avora (`techavora`)
 **Industry:** Institutional AI Infrastructure & Data Operations  
 **Competitors Analyzed:** Scale AI, Labelbox, Appen  
 **Date:** August 2026  

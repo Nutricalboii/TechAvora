@@ -5,7 +5,7 @@ export const siteConfig = {
   ogImage: "/og",
   contactEmail: "avoraglobalus@gmail.com",
   links: {
-    github: "https://github.com/Nutricalboii/Avora",
+    github: "https://github.com/Nutricalboii/TechAvora",
     twitter: "",
     linkedin: "",
   },

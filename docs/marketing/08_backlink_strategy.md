@@ -1,6 +1,6 @@
-# Avora Ventures backlink strategy
+# Tech Avora backlink strategy
 
-This plan supports the canonical site at https://www.avoraventure.com/ and avoids paid, automated, or low-quality link schemes.
+This plan supports the canonical site at https://techavora.com/ and avoids paid, automated, or low-quality link schemes.
 
 ## Priority link targets
 

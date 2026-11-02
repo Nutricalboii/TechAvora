@@ -1,6 +1,6 @@
-# Enterprise Email Outreach Pitch Package — Avora Venture
+# Enterprise Email Outreach Pitch Package — Tech Avora
 
-**Brand:** Avora Venture (`avora-ventures`)  
+**Brand:** Tech Avora (`techavora`)
 **Positioning:** Institutional AI Infrastructure & Data Operations  
 **Core Framework:** The Five Disciplines Framework  
 **Target Personas:** Chief Technology Officers (CTOs), VPs of AI/ML, Heads of Data Engineering, VPs of Data Science  

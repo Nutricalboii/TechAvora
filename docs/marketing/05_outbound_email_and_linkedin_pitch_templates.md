@@ -1,4 +1,4 @@
-# Outbound Email & LinkedIn Pitch Scripts — Avora Venture
+# Outbound Email & LinkedIn Pitch Scripts — Tech Avora
 
 **Target Audience:** CTOs, VPs of AI/ML, Heads of Data Engineering  
 **Primary Hook:** Data Quality & Pipeline Audit Inquiry  
