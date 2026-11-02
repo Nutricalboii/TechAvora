@@ -125,7 +125,7 @@ export default function Footer() {
               <li>
                 <button
                   type="button"
-                  onClick={() => window.dispatchEvent(new Event('avora:open-consent'))}
+                  onClick={() => window.dispatchEvent(new Event('techavora:open-consent'))}
                   className="text-[15px] text-[var(--foreground)] hover:text-[#B8860B] transition-colors duration-200 text-left"
                 >
                   Cookie settings
@@ -138,7 +138,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="py-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-[14px] text-[var(--foreground-muted)]">
-            © {CURRENT_YEAR} Avora Ventures. All rights reserved.
+            © {CURRENT_YEAR} Tech Avora. All rights reserved.
           </p>
           <a
             href={`mailto:${siteConfig.contactEmail}`}

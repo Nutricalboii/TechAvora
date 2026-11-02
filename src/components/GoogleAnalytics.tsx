@@ -5,8 +5,8 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useSyncExternalStore } from 'react';
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
-const CONSENT_KEY = 'avora-analytics-consent';
-const CONSENT_COOKIE = 'avora_analytics_consent';
+const CONSENT_KEY = 'techavora-analytics-consent';
+const CONSENT_COOKIE = 'techavora_analytics_consent';
 
 declare global {
   interface Window {
@@ -38,8 +38,8 @@ function readAnalyticsConsent(): 'granted' | 'denied' | null {
 }
 
 function subscribeToAnalyticsConsent(onChange: () => void) {
-  window.addEventListener('avora:analytics-consent', onChange);
-  return () => window.removeEventListener('avora:analytics-consent', onChange);
+  window.addEventListener('techavora:analytics-consent', onChange);
+  return () => window.removeEventListener('techavora:analytics-consent', onChange);
 }
 
 function cleanLabel(value: string, fallback: string): string {
@@ -187,7 +187,7 @@ export default function GoogleAnalytics() {
       });
     };
 
-    window.addEventListener('avora:analytics-consent', handleConsent);
+    window.addEventListener('techavora:analytics-consent', handleConsent);
     document.addEventListener('click', handleClick);
     document.addEventListener('focusin', handleFocusIn);
     document.addEventListener('change', handleChange);
@@ -198,7 +198,7 @@ export default function GoogleAnalytics() {
 
     return () => {
       window.clearTimeout(pageViewRetry);
-      window.removeEventListener('avora:analytics-consent', handleConsent);
+      window.removeEventListener('techavora:analytics-consent', handleConsent);
       document.removeEventListener('click', handleClick);
       document.removeEventListener('focusin', handleFocusIn);
       document.removeEventListener('change', handleChange);

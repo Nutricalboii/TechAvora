@@ -48,7 +48,7 @@ export function SpotlightNav() {
           )}
         >
           <div className="flex items-center">
-            <Link href="/" aria-label="Avora Ventures" className="block">
+            <Link href="/" aria-label="Tech Avora" className="block">
               <Logo className={cn(
                 "w-auto transition-all duration-500",
                 isScrolled ? "h-8 md:h-9" : "h-14 md:h-16",

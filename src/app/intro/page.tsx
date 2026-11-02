@@ -121,7 +121,7 @@ export default function IntroPage() {
   const enter = () => {
     if (leaving) return;
     setLeaving(true);
-    sessionStorage.setItem('avora_intro_seen', '1');
+    sessionStorage.setItem('techavora_intro_seen', '1');
     router.push('/');
   };
 
@@ -167,7 +167,7 @@ export default function IntroPage() {
               className="mb-6"
             >
               <span className="font-mono text-[11px] tracking-[0.35em] uppercase text-white/80">
-                Avora Ventures
+                Tech Avora
               </span>
             </motion.div>
 
@@ -177,7 +177,7 @@ export default function IntroPage() {
               transition={{ delay: 0.85, duration: 1.1, ease: [0.22,1,0.36,1] }}
               className="font-heading text-[15vw] md:text-[10vw] lg:text-[8vw] uppercase leading-none tracking-wide mb-3 text-white"
             >
-              Avora
+              Tech Avora
             </motion.h1>
 
             <motion.p

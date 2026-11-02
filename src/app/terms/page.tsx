@@ -3,13 +3,13 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Terms of Service',
-  description: 'Terms and conditions for using Avora Ventures services and website.',
+  description: 'Terms and conditions for using Tech Avora services and website.',
   alternates: { canonical: '/terms' },
   openGraph: {
     title: 'Terms of Service',
-    description: 'Terms for using the Avora Ventures website and services.',
-    url: 'https://www.avoraventure.com/terms',
-    images: [{ url: 'https://www.avoraventure.com/og', width: 1200, height: 630, alt: 'Avora Ventures' }],
+    description: 'Terms for using the Tech Avora website and services.',
+    url: 'https://techavora.com/terms',
+    images: [{ url: 'https://techavora.com/og', width: 1200, height: 630, alt: 'Tech Avora' }],
     type: 'website',
   },
 };
@@ -51,7 +51,7 @@ export default function TermsPage() {
               1. Services
             </h2>
             <p className="text-[15px] text-[var(--foreground-muted)] leading-relaxed">
-              Avora Ventures provides data generation, annotation, labeling, quality auditing,
+              Tech Avora provides data generation, annotation, labeling, quality auditing,
               and AI implementation services. Specific terms, deliverables, and pricing are
               defined in individual service agreements with each client.
             </p>
@@ -64,7 +64,7 @@ export default function TermsPage() {
             <p className="text-[15px] text-[var(--foreground-muted)] leading-relaxed">
               This website is for informational purposes only. By using this site, you agree not
               to reproduce, distribute, or create derivative works from its content without
-              written permission from Avora Ventures.
+              written permission from Tech Avora.
             </p>
           </section>
 
@@ -74,7 +74,7 @@ export default function TermsPage() {
             </h2>
             <p className="text-[15px] text-[var(--foreground-muted)] leading-relaxed">
               Submitting the contact form does not constitute a binding agreement. All
-              engagements are subject to a separate signed agreement between Avora Ventures and
+              engagements are subject to a separate signed agreement between Tech Avora and
               the client.
             </p>
           </section>
@@ -84,8 +84,8 @@ export default function TermsPage() {
               4. Intellectual property
             </h2>
             <p className="text-[15px] text-[var(--foreground-muted)] leading-relaxed">
-              All website content, design, and branding are the intellectual property of Avora
-              Ventures or their respective rights holders. Work product delivered to clients under service agreements is governed
+              All website content, design, and branding are the intellectual property of Tech
+              Avora or their respective rights holders. Work product delivered to clients under service agreements is governed
               by those agreements.
             </p>
           </section>
@@ -95,7 +95,7 @@ export default function TermsPage() {
               5. Limitation of liability
             </h2>
             <p className="text-[15px] text-[var(--foreground-muted)] leading-relaxed">
-              Avora Ventures is not liable for indirect, incidental, or consequential damages
+              Tech Avora is not liable for indirect, incidental, or consequential damages
               arising from use of this website or its services beyond what is specified in a
               signed client agreement.
             </p>

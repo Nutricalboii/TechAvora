@@ -1,7 +1,7 @@
 export const siteConfig = {
-  name: "Avora Ventures",
-  description: "Avora Ventures helps enterprises build production-ready AI with synthetic data generation, data annotation, labeling, data quality assurance, and AI implementation.",
-  url: "https://www.avoraventure.com",
+  name: "Tech Avora",
+  description: "Tech Avora helps enterprises build production-ready AI with synthetic data generation, data annotation, labeling, data quality assurance, and AI implementation.",
+  url: "https://techavora.com",
   ogImage: "/og",
   contactEmail: "avoraglobalus@gmail.com",
   links: {
@@ -9,7 +9,7 @@ export const siteConfig = {
     twitter: "",
     linkedin: "",
   },
-  shortName: "Avora",
+  shortName: "Tech Avora",
   keywords: [
     "synthetic data generation services",
     "data annotation services",

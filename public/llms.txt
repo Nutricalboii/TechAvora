@@ -1,24 +1,24 @@
-# Avora Ventures
+# Tech Avora
 
-> Avora Ventures helps enterprises prepare high-quality AI data and build production-ready AI solutions through an integrated delivery framework.
+> Tech Avora helps enterprises prepare high-quality AI data and build production-ready AI solutions through an integrated delivery framework.
 
-Avora's public service areas include:
+Tech Avora's public service areas include:
 
-- AI solutions and implementation: https://www.avoraventure.com/services?stage=0
-- Synthetic data generation: https://www.avoraventure.com/services?stage=1
-- Data annotation: https://www.avoraventure.com/services?stage=2
-- Data labeling: https://www.avoraventure.com/services?stage=3
-- Data quality assurance: https://www.avoraventure.com/services?stage=4
+- AI solutions and implementation: https://techavora.com/services?stage=0
+- Synthetic data generation: https://techavora.com/services?stage=1
+- Data annotation: https://techavora.com/services?stage=2
+- Data labeling: https://techavora.com/services?stage=3
+- Data quality assurance: https://techavora.com/services?stage=4
 
 Useful pages:
 
-- Home: https://www.avoraventure.com/
-- Services: https://www.avoraventure.com/services
-- Insights and research links: https://www.avoraventure.com/blog
-- Privacy policy: https://www.avoraventure.com/privacy
-- Terms of service: https://www.avoraventure.com/terms
-- Contact: https://www.avoraventure.com/#contact
+- Home: https://techavora.com/
+- Services: https://techavora.com/services
+- Insights and research links: https://techavora.com/blog
+- Privacy policy: https://techavora.com/privacy
+- Terms of service: https://techavora.com/terms
+- Contact: https://techavora.com/#contact
 
 Contact: avoraglobalus@gmail.com
 
-Avora does not publish pricing on this site. Contact Avora for project-specific scope and pricing.
+Tech Avora does not publish pricing on this site. Contact Tech Avora for project-specific scope and pricing.

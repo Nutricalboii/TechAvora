@@ -25,7 +25,7 @@ export default function Hero() {
   return (
     <section
       ref={container}
-      aria-label="Avora Ventures — Production AI starts with better data"
+      aria-label="Tech Avora — Production AI starts with better data"
       className="relative min-h-[100dvh] flex flex-col justify-center lg:justify-end overflow-hidden bg-black py-16 sm:py-20 md:py-24 lg:py-0"
     >
       {/* Optimized background image using next/image */}
@@ -61,7 +61,7 @@ export default function Hero() {
         {/* Sleek caption on the bottom */}
         <div className="hero-sub max-w-3xl lg:max-w-4xl" style={{ willChange: 'transform, opacity' }}>
           <p className="font-sans text-slate-300 text-base sm:text-lg md:text-xl leading-relaxed border-l-2 border-[#f59e0b]/60 pl-4 sm:pl-5">
-            Avora helps enterprises prepare high-quality AI data and build production-ready AI solutions. One integrated delivery framework from raw data to deployed intelligence.
+            Tech Avora helps enterprises prepare high-quality AI data and build production-ready AI solutions. One integrated delivery framework from raw data to deployed intelligence.
           </p>
         </div>
       </div>

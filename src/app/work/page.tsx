@@ -5,13 +5,13 @@ export default function WorkPage() {
     <div className="min-h-[70vh] bg-white/80 pt-36 pb-24">
       <div className="mx-auto max-w-3xl px-6 sm:px-10 lg:px-16">
         <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-[#9a6d08]">
-          Avora Ventures / Project Experience
+          Tech Avora / Project Experience
         </p>
         <h1 className="mb-6 font-heading text-4xl uppercase leading-tight tracking-wide text-slate-900 sm:text-6xl">
           Case studies are under review.
         </h1>
         <p className="mb-8 max-w-2xl text-lg leading-relaxed text-slate-700">
-          Avora is reviewing project outcome details and publication permissions before sharing
+          Tech Avora is reviewing project outcome details and publication permissions before sharing
           client case studies. Explore the service methodologies while that review is underway.
         </p>
         <Link

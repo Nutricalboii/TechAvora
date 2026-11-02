@@ -85,7 +85,7 @@ export default function Services() {
             <span className="text-[#B8860B]">One delivery framework.</span>
           </h2>
           <p className="text-sm sm:text-base lg:text-lg text-slate-700 leading-relaxed font-medium max-w-2xl mx-auto">
-            Start with the outcome you need. Avora supports the full AI lifecycle, from data generation and preparation through production-ready AI systems. One integrated delivery framework.
+            Start with the outcome you need. Tech Avora supports the full AI lifecycle, from data generation and preparation through production-ready AI systems. One integrated delivery framework.
           </p>
         </div>
 

@@ -33,7 +33,7 @@ export async function GET() {
         <div style={{ display: 'flex', flexDirection: 'column', maxWidth: 740 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 52 }}>
             <div style={{ width: 14, height: 14, borderRadius: 7, background: '#b8860b' }} />
-            <div style={{ fontSize: 24, fontWeight: 700, letterSpacing: 7 }}>AVORA VENTURES</div>
+            <div style={{ fontSize: 24, fontWeight: 700, letterSpacing: 7 }}>TECH AVORA</div>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', fontSize: 62, fontWeight: 700, lineHeight: 1.08, letterSpacing: -2 }}>
             Production AI

@@ -130,7 +130,7 @@ function jsonError(message: string, status: number): NextResponse {
 const MAX_BODY_BYTES = 8_192; // 8 KB — more than enough for a contact form
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
-  // Browser form submissions must originate from Avora itself.
+  // Browser form submissions must originate from Tech Avora itself.
   if (!isTrustedOrigin(req)) {
     return jsonError('Forbidden.', 403);
   }

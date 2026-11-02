@@ -3,8 +3,8 @@
 import Link from 'next/link';
 import { useSyncExternalStore } from 'react';
 
-const CONSENT_KEY = 'avora-analytics-consent';
-const CONSENT_COOKIE = 'avora_analytics_consent';
+const CONSENT_KEY = 'techavora-analytics-consent';
+const CONSENT_COOKIE = 'techavora_analytics_consent';
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 type Consent = 'granted' | 'denied' | null;
@@ -44,13 +44,13 @@ function subscribeToConsent(onChange: () => void) {
     onChange();
   };
 
-  window.addEventListener('avora:analytics-consent', updateConsent);
-  window.addEventListener('avora:open-consent', openPreferences);
-  window.addEventListener('avora:close-consent', closePreferences);
+  window.addEventListener('techavora:analytics-consent', updateConsent);
+  window.addEventListener('techavora:open-consent', openPreferences);
+  window.addEventListener('techavora:close-consent', closePreferences);
   return () => {
-    window.removeEventListener('avora:analytics-consent', updateConsent);
-    window.removeEventListener('avora:open-consent', openPreferences);
-    window.removeEventListener('avora:close-consent', closePreferences);
+    window.removeEventListener('techavora:analytics-consent', updateConsent);
+    window.removeEventListener('techavora:open-consent', openPreferences);
+    window.removeEventListener('techavora:close-consent', closePreferences);
   };
 }
 
@@ -72,7 +72,7 @@ export default function AnalyticsConsent() {
     }
     const secure = window.location.protocol === 'https:' ? '; Secure' : '';
     document.cookie = `${CONSENT_COOKIE}=${value}; Max-Age=31536000; Path=/; SameSite=Lax${secure}`;
-    window.dispatchEvent(new CustomEvent('avora:analytics-consent', { detail: value }));
+    window.dispatchEvent(new CustomEvent('techavora:analytics-consent', { detail: value }));
   };
 
   if (!GA_ID || (consent !== null && isOpen !== 'open')) return null;
@@ -85,7 +85,7 @@ export default function AnalyticsConsent() {
       className="fixed inset-x-4 bottom-4 z-[100] mx-auto max-w-3xl rounded-2xl border border-slate-200 bg-white p-5 shadow-2xl sm:flex sm:items-center sm:gap-6"
     >
       <p className="flex-1 text-sm leading-relaxed text-slate-700">
-        Avora uses Vercel Analytics for aggregate site usage. Google Analytics is optional and runs only
+        Tech Avora uses Vercel Analytics for aggregate site usage. Google Analytics is optional and runs only
         with your permission. Read our{' '}
         <Link href="/privacy" className="font-semibold text-[#8a6200] underline">
           Privacy Policy
@@ -96,7 +96,7 @@ export default function AnalyticsConsent() {
         {consent !== null && (
           <button
             type="button"
-            onClick={() => window.dispatchEvent(new Event('avora:close-consent'))}
+            onClick={() => window.dispatchEvent(new Event('techavora:close-consent'))}
             className="rounded-full border border-slate-300 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-slate-700"
           >
             Close

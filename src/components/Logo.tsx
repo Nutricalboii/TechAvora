@@ -15,7 +15,7 @@ export function Logo({ className }: LogoProps) {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 240 60"
       className={cn('overflow-visible', className)}
-      aria-label="Avora Ventures"
+      aria-label="Tech Avora"
       role="img"
     >
       {/* Engineered by Vaibhav Sharma */}
@@ -51,7 +51,7 @@ export function Logo({ className }: LogoProps) {
         </linearGradient>
       </defs>
 
-      {/* AVORA text */}
+      {/* Tech Avora wordmark — keep the brand name as the only logo text */}
       <text
         x="4"
         y="35"
@@ -62,21 +62,7 @@ export function Logo({ className }: LogoProps) {
         className="fill-[#2A1A0E]"
         style={{ fill: 'currentColor' }}
       >
-        AVORA
-      </text>
-
-      {/* VENTURE subtext */}
-      <text
-        x="6"
-        y="52"
-        fontFamily="'Space Grotesk', 'Inter', system-ui, sans-serif"
-        fontWeight="400"
-        fontSize="13"
-        letterSpacing="8"
-        className="fill-[#6B5642]"
-        style={{ fill: 'currentColor', opacity: 0.7 }}
-      >
-        VENTURE
+        Tech Avora
       </text>
     </svg>
   );

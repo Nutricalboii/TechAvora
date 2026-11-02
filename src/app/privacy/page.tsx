@@ -3,13 +3,13 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
-  description: 'How Avora Ventures collects, uses, and protects your personal information.',
+  description: 'How Tech Avora collects, uses, and protects your personal information.',
   alternates: { canonical: '/privacy' },
   openGraph: {
     title: 'Privacy Policy',
-    description: 'How Avora Ventures handles contact inquiries, analytics, and privacy preferences.',
-    url: 'https://www.avoraventure.com/privacy',
-    images: [{ url: 'https://www.avoraventure.com/og', width: 1200, height: 630, alt: 'Avora Ventures' }],
+    description: 'How Tech Avora handles contact inquiries, analytics, and privacy preferences.',
+    url: 'https://techavora.com/privacy',
+    images: [{ url: 'https://techavora.com/og', width: 1200, height: 630, alt: 'Tech Avora' }],
     type: 'website',
   },
 };
@@ -74,10 +74,10 @@ export default function PrivacyPage() {
               3. Data storage
             </h2>
             <p className="text-[15px] text-[var(--foreground-muted)] leading-relaxed">
-              The contact form sends submissions through the website API to an Avora-configured
+              The contact form sends submissions through the website API to a Tech Avora-configured
               Google Apps Script endpoint for delivery and storage. Google may process the
               information as part of that service. Access to resulting records is controlled
-              through Avora&apos;s Google account and script permissions. Inquiry information is
+              through Tech Avora&apos;s Google account and script permissions. Inquiry information is
               retained only as long as needed to respond, manage a potential engagement, or meet
               legal obligations; contact us to request deletion.
             </p>
@@ -88,7 +88,7 @@ export default function PrivacyPage() {
               4. Cookies
             </h2>
             <p className="text-[15px] text-[var(--foreground-muted)] leading-relaxed">
-              We use one first-party preference cookie, <code className="text-xs">avora_analytics_consent</code>,
+              We use one first-party preference cookie, <code className="text-xs">techavora_analytics_consent</code>,
               and matching browser storage to remember whether you allowed or declined analytics.
               If you choose “Allow analytics,” Google Analytics may use analytics cookies and
               similar technologies to measure aggregate visits, page views, and interactions.
@@ -121,8 +121,8 @@ export default function PrivacyPage() {
             <p className="text-[15px] text-[var(--foreground-muted)] leading-relaxed">
               Vercel Analytics is used for aggregate website usage measurement and is designed
               to operate without analytics cookies. Google Analytics loads only after you choose
-              to allow it; declining prevents Avora&apos;s Google Analytics events from being sent.
-              With permission, Avora measures page views, traffic sources, and limited interaction
+              to allow it; declining prevents Tech Avora&apos;s Google Analytics events from being sent.
+              With permission, Tech Avora measures page views, traffic sources, and limited interaction
               events such as service selection and successful form submission. Contact form names,
               email addresses, and message text are not sent to Google Analytics. You can change
               your Google Analytics choice using Cookie settings in the site footer.

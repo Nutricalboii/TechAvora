@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
   <!-- Dark background pill -->
   <rect width="32" height="32" rx="8" fill="#080b12"/>
-  <!-- Gold swoosh ring (the O glyph) -->
+  <!-- Gold orbital mark for Tech Avora -->
   <ellipse cx="16" cy="15" rx="8" ry="4.5"
     fill="none"
     stroke="url(#g)"
@@ -14,13 +14,13 @@
     stroke="url(#g)"
     stroke-width="1.5"
     stroke-linecap="round"/>
-  <!-- A letter mark -->
+  <!-- TA letter mark -->
   <text x="4" y="28"
     font-family="system-ui, sans-serif"
     font-weight="800"
     font-size="13"
     letter-spacing="1"
-    fill="white">AV</text>
+    fill="white">TA</text>
   <defs>
     <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#C9A84C"/>

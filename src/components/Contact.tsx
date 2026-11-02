@@ -112,7 +112,7 @@ export default function Contact() {
             Start a Project Conversation
           </span>
           <p className="font-sans text-slate-600 text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
-            Tell us what you&apos;re building, where you are in the AI lifecycle, and what&apos;s blocking you. We&apos;ll identify where Avora can help.
+            Tell us what you&apos;re building, where you are in the AI lifecycle, and what&apos;s blocking you. We&apos;ll identify where Tech Avora can help.
           </p>
         </div>
 
@@ -261,10 +261,10 @@ export default function Contact() {
                 <p className="text-center text-sm text-slate-600">
                   Prefer email?{' '}
                   <a
-                    href={`mailto:${siteConfig.contactEmail}?subject=${encodeURIComponent('Project inquiry — Avora Ventures')}`}
+                    href={`mailto:${siteConfig.contactEmail}?subject=${encodeURIComponent('Project inquiry — Tech Avora')}`}
                     className="font-semibold text-[#8a6200] underline underline-offset-2"
                   >
-                    Contact Avora directly
+                    Contact Tech Avora directly
                   </a>
                 </p>
               </form>

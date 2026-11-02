@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     description: 'Curated external references on synthetic data, annotation, data quality, and AI deployment.',
     url: `${siteConfig.url}/blog`,
     type: 'website',
-    images: [{ url: `${siteConfig.url}/og`, width: 1200, height: 630, alt: 'Avora Ventures AI data operations insights' }],
+    images: [{ url: `${siteConfig.url}/og`, width: 1200, height: 630, alt: 'Tech Avora AI data operations insights' }],
   },
 };
 
