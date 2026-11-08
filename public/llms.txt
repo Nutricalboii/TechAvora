@@ -2,19 +2,23 @@
 
 > Tech Avora helps enterprises prepare high-quality AI data and build production-ready AI solutions through an integrated delivery framework.
 
-Tech Avora's public service areas include:
+Tech Avora's public service pages:
 
-- AI solutions and implementation: https://techavora.com/services?stage=0
-- Synthetic data generation: https://techavora.com/services?stage=1
-- Data annotation: https://techavora.com/services?stage=2
-- Data labeling: https://techavora.com/services?stage=3
-- Data quality assurance: https://techavora.com/services?stage=4
+- AI solutions and implementation: https://techavora.com/services/ai-solutions
+- Synthetic data generation: https://techavora.com/services/synthetic-data-generation
+- Data annotation: https://techavora.com/services/data-annotation
+- Data labeling: https://techavora.com/services/data-labeling
+- Data quality assurance: https://techavora.com/services/data-quality-assurance
 
 Useful pages:
 
 - Home: https://techavora.com/
 - Services: https://techavora.com/services
-- Insights and research links: https://techavora.com/blog
+- Insights: https://techavora.com/blog
+- Synthetic data evaluation: https://techavora.com/blog/evaluate-synthetic-data-for-ai
+- Annotation guideline design: https://techavora.com/blog/write-data-annotation-guidelines
+- Machine learning data quality checks: https://techavora.com/blog/data-quality-checks-for-machine-learning
+- Moving an AI pilot to production: https://techavora.com/blog/move-ai-pilot-to-production
 - Privacy policy: https://techavora.com/privacy
 - Terms of service: https://techavora.com/terms
 - Contact: https://techavora.com/#contact

@@ -60,15 +60,15 @@ export default function Footer() {
             </h3>
             <ul className="space-y-4">
               {[
-                { label: 'AI Solutions', stage: 0 },
-                { label: 'Data Generation', stage: 1 },
-                { label: 'Data Annotation', stage: 2 },
-                { label: 'Data Labeling', stage: 3 },
-                { label: 'Data Quality Assurance', stage: 4 },
-              ].map(({ label, stage }) => (
+                { label: 'AI Solutions', slug: 'ai-solutions' },
+                { label: 'Data Generation', slug: 'synthetic-data-generation' },
+                { label: 'Data Annotation', slug: 'data-annotation' },
+                { label: 'Data Labeling', slug: 'data-labeling' },
+                { label: 'Data Quality Assurance', slug: 'data-quality-assurance' },
+              ].map(({ label, slug }) => (
                 <li key={label}>
                   <Link
-                    href={`/services?stage=${stage}`}
+                    href={`/services/${slug}`}
                     className="text-[15px] text-[var(--foreground)] hover:text-[#B8860B] transition-colors duration-200"
                   >
                     {label}

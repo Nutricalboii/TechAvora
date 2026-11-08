@@ -9,18 +9,19 @@ const stages = [
   {
     id: '01',
     slug: 'ai-solutions',
+    detailSlug: 'ai-solutions',
     title: 'AI Solutions',
     subtitle: 'Where quality data becomes engineered systems',
     accent: '#B8860B',
     intro:
-      'Your team has data. Your competitors have AI. The gap is an engineering problem, not a strategy one. AI Solutions takes quality data and a trained model and turns it into a production system — one that survives real-world conditions, satisfies governance requirements, and improves over time.',
+      'AI solutions connect a defined business workflow to suitable data, models, and operating controls. Tech Avora helps teams assess feasibility, evaluate performance, plan deployment, and establish monitoring and review practices for production use.',
     why: [
       { title: 'Start with the problem', body: 'Fall in love with the problem, not your favourite algorithm. Specific, financially quantified objectives — not a desire to "use AI."' },
       { title: 'Invest in data quality', body: 'Data quality issues can require costly remediation. Assessing data early helps teams identify gaps before model development.' },
       { title: 'Choose the right tool', body: 'Resist deep learning by default — the simplest appropriate model often wins and is far easier to govern.' },
       { title: 'Design for collaboration', body: 'Build workflows where AI handles routine work and humans focus on exceptions. AI as advisor, not autopilot.' },
       { title: 'Plan the full lifecycle', body: 'Think deployment, monitoring, and retirement from day one. The first deployment is a hypothesis, not a final answer.' },
-      { title: 'Explainability builds trust', body: 'Enterprise-grade model explainability is often essential for user adoption — transparent AI for regulated environments where teams won\'t trust a black box.' },
+      { title: 'Make decisions reviewable', body: 'Document model purpose, limitations, and review paths. The explanation methods and records needed depend on the system, its users, and the decisions it informs.' },
     ],
     methods: [
       { name: 'Problem Framing & Discovery', desc: 'Structured discovery tailored to project complexity — mapping existing data flows, identifying failure patterns, and defining success metrics.' },
@@ -34,6 +35,7 @@ const stages = [
   {
     id: '02',
     slug: 'generation',
+    detailSlug: 'synthetic-data-generation',
     title: 'Data Generation',
     subtitle: 'Engineering synthetic data for innovation, privacy, and scale',
     accent: '#B8860B',
@@ -41,7 +43,7 @@ const stages = [
       'You can\'t train reliable AI on rare events you\'ve never seen, and sensitive data can bring privacy and governance concerns. Data generation can create realistic, privacy-aware datasets across data types, with validation needed for each intended use.',
     why: [
       { title: 'Computer vision and image data', body: 'Synthetic images, video frames, and 3D scenes for object detection, segmentation, and autonomous systems — without expensive real-world capture or annotation at scale.' },
-      { title: 'Documents and text', body: 'Realistic synthetic invoices, contracts, medical records, and structured forms — enabling document AI training while eliminating privacy exposure.' },
+      { title: 'Documents and text', body: 'Synthetic invoices, contracts, and structured forms can support development and testing without directly distributing source records. Assess privacy risk for the generation method and intended use.' },
       { title: 'Sensor and IoT data', body: 'Synthetic telemetry and IoT streams that include rare failure modes and edge conditions almost never present in production logs.' },
       { title: 'Time-series data', body: 'High-fidelity temporal patterns for demand forecasting, financial modeling, and predictive maintenance.' },
       { title: 'Conversational data', body: 'Diverse synthetic dialogue, intent variations, and edge-case utterances that create robust training data for chatbots and voice assistants across languages.' },
@@ -55,13 +57,14 @@ const stages = [
     ],
     myths: [
       { myth: 'Synthetic data is just fancy data augmentation.', reality: 'Augmentation varies existing samples; true generation creates novel, plausible combinations never observed in the source data.' },
-      { myth: 'If it\'s synthetic, it\'s automatically private.', reality: 'Poorly generated data can memorize rare real combinations. Genuine privacy needs differential privacy and careful validation — not just the label "synthetic."' },
-      { myth: 'Synthetic data always underperforms real data.', reality: 'Well-designed synthetic data can outperform scarce or noisy real data — especially when it incorporates domain knowledge the raw data lacks.' },
+      { myth: 'If it\'s synthetic, it\'s automatically private.', reality: 'Synthetic data can retain or reproduce sensitive patterns. Assess disclosure risk for the method and release context; formal privacy techniques may be appropriate for some use cases.' },
+      { myth: 'Synthetic data always underperforms real data.', reality: 'Synthetic data may help with some tasks, but utility should be measured on representative held-out data against a relevant baseline.' },
     ],
   },
   {
     id: '03',
     slug: 'annotation',
+    detailSlug: 'data-annotation',
     title: 'Data Annotation',
     subtitle: 'Identify and mark information inside data.',
     accent: '#B8860B',
@@ -88,6 +91,7 @@ const stages = [
   {
     id: '04',
     slug: 'labeling',
+    detailSlug: 'data-labeling',
     title: 'Data Labeling',
     subtitle: 'Classify and organize information into structured categories.',
     accent: '#B8860B',
@@ -112,6 +116,7 @@ const stages = [
   {
     id: '05',
     slug: 'quality',
+    detailSlug: 'data-quality-assurance',
     title: 'Data Quality Assurance',
     subtitle: 'The foundation of trustworthy decisions',
     accent: '#B8860B',
@@ -417,16 +422,15 @@ function StagePanel({ stage }: { stage: typeof stages[0] }) {
 
 const stageIcons = ['◈', '◉', '◎', '◆', '◇'];
 
-function ServicesOverviewGrid({ onDiveDeep, onSelectStage }: { onDiveDeep: () => void; onSelectStage: (i: number) => void }) {
+function ServicesOverviewGrid({ onDiveDeep }: { onDiveDeep: () => void }) {
   return (
     <div className="py-8 sm:py-14 lg:py-20">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {stages.map((stage, i) => (
-            <div
+            <article
               key={stage.id}
-              onClick={() => onSelectStage(i)}
-              className="group border border-slate-200 rounded-2xl bg-white hover:border-[#B8860B]/40 hover:shadow-lg transition-all duration-300 flex flex-col overflow-hidden cursor-pointer"
+              className="group border border-slate-200 rounded-2xl bg-white hover:border-[#B8860B]/40 hover:shadow-lg transition-all duration-300 flex flex-col overflow-hidden"
             >
               {/* Card top accent line */}
               <div className="h-0.5 bg-gradient-to-r from-[#B8860B] to-[#D4AF37] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -473,13 +477,13 @@ function ServicesOverviewGrid({ onDiveDeep, onSelectStage }: { onDiveDeep: () =>
 
                 {/* Explore link */}
                 <div className="mt-5 pt-3 flex items-center justify-between">
-                  <span className="inline-flex items-center gap-1.5 font-mono text-xs tracking-wider text-[#B8860B] font-bold group-hover:translate-x-1 transition-transform">
+                  <Link href={`/services/${stage.detailSlug}`} className="inline-flex min-h-10 items-center gap-1.5 rounded-sm font-mono text-xs tracking-wider text-[#B8860B] font-bold group-hover:translate-x-1 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#8a6200]">
                     <span>Explore Service</span>
                     <span>→</span>
-                  </span>
+                  </Link>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
 
@@ -582,7 +586,7 @@ function ServicesContent({ initialStageParam }: { initialStageParam?: string }) 
 
       {/* ── OVERVIEW GRID ────────────────────────────────────────────── */}
       {selectedStage === null && (
-        <ServicesOverviewGrid onDiveDeep={() => handleExplore(0)} onSelectStage={handleExplore} />
+        <ServicesOverviewGrid onDiveDeep={() => handleExplore(0)} />
       )}
 
       {/* ── DETAIL VIEW ──────────────────────────────────────────────── */}

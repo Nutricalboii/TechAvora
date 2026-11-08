@@ -1,211 +1,90 @@
-'use client';
-import React, { useRef } from 'react';
-import Image from 'next/image';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
-import { ExternalLink } from 'lucide-react';
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { siteConfig } from '@/config/site';
+import { insights } from '@/config/insights';
 
-if (typeof window !== 'undefined') { gsap.registerPlugin(ScrollTrigger); }
-
-const posts = [
-  {
-    href: 'https://www.ibm.com/topics/synthetic-data',
-    title: 'What Is Synthetic Data?',
-    excerpt:
-      'How artificially generated datasets solve the AI data scarcity problem — covering privacy-safe simulation, domain transfer, and the fidelity checks that make synthetic data usable for model training.',
-    source: 'IBM',
-    category: 'Data Generation',
-    featured: true,
+export const metadata: Metadata = {
+  title: 'AI Data Operations Insights',
+  description:
+    'Practical guides from Tech Avora on synthetic data evaluation, annotation quality, machine learning data checks, and moving AI pilots into production.',
+  alternates: { canonical: `${siteConfig.url}/blog` },
+  openGraph: {
+    title: 'AI Data Operations Insights | Tech Avora',
+    description:
+      'Practical guides on synthetic data, annotation, data quality, and production AI.',
+    url: `${siteConfig.url}/blog`,
+    type: 'website',
+    siteName: siteConfig.name,
+    images: [{ url: `${siteConfig.url}/og`, width: 1200, height: 630, alt: 'Tech Avora AI data operations insights' }],
   },
-  {
-    href: 'https://www.ibm.com/think/topics/data-labeling',
-    title: 'What Is Data Annotation?',
-    excerpt:
-      'A full breakdown of how data annotation works — image labeling, NLP tagging, bounding boxes — and why precision ontologies are the backbone of every well-performing AI model.',
-    source: 'IBM',
-    category: 'Data Annotation',
-    featured: false,
-  },
-  {
-    href: 'https://en.wikipedia.org/wiki/Inter-rater_reliability',
-    title: 'Inter-Rater Reliability & Cohen\'s Kappa',
-    excerpt:
-      'The statistical foundation behind measuring labeling agreement. Cohen\'s Kappa is the standard quality gate that determines whether annotated data is actually fit for training.',
-    source: 'Wikipedia',
-    category: 'Data Auditing',
-    featured: false,
-  },
-  {
-    href: 'https://www.ibm.com/think/topics/model-deployment',
-    title: 'What Is AI Model Deployment?',
-    excerpt:
-      'The full engineering story behind production AI — infrastructure choices, monitoring, drift detection, and the operational decisions that determine whether a deployed model actually holds up.',
-    source: 'IBM',
-    category: 'AI Implementation',
-    featured: false,
-  },
-  {
-    href: 'https://www.ibm.com/topics/data-quality',
-    title: 'What Is Data Quality?',
-    excerpt:
-      'Why data quality governs model performance more than architecture. Covers the six core dimensions — completeness, consistency, accuracy — and the governance frameworks that enforce them.',
-    source: 'IBM',
-    category: 'Data Auditing',
-    featured: false,
-  },
-  {
-    href: 'https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai',
-    title: 'The State of AI in 2026 — McKinsey Survey',
-    excerpt:
-      'McKinsey\'s annual global survey on enterprise AI adoption: where companies are seeing ROI, what\'s blocking deployment, and why data infrastructure remains the primary bottleneck to scale.',
-    source: 'McKinsey & Company',
-    category: 'AI Implementation',
-    featured: false,
-  },
-];
-
-const categoryColors: Record<string, string> = {
-  'Data Generation': 'bg-amber-50 text-amber-700 border-amber-200',
-  'Data Annotation': 'bg-blue-50 text-blue-700 border-blue-200',
-  'Data Auditing': 'bg-emerald-50 text-emerald-700 border-emerald-200',
-  'AI Implementation': 'bg-purple-50 text-purple-700 border-purple-200',
 };
 
+function safeJsonLd(value: unknown) {
+  return JSON.stringify(value).replace(/</g, '\\u003c');
+}
+
 export default function BlogPage() {
-  const container = useRef<HTMLDivElement>(null);
-
-  useGSAP(() => {
-    gsap.fromTo('.blog-header > *',
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 1, stagger: 0.1, ease: 'power3.out' }
-    );
-    gsap.fromTo('.blog-card',
-      { opacity: 0, y: 40 },
-      {
-        opacity: 1, y: 0, duration: 0.8, stagger: 0.08, ease: 'power3.out',
-        scrollTrigger: { trigger: '.blog-grid', start: 'top 85%' }
-      }
-    );
-  }, { scope: container });
-
-  const featured = posts[0];
-  const rest = posts.slice(1);
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': `${siteConfig.url}/blog#collection`,
+    name: 'AI Data Operations Insights',
+    description: 'Practical guides on synthetic data, annotation, data quality, and production AI.',
+    url: `${siteConfig.url}/blog`,
+    isPartOf: { '@id': `${siteConfig.url}/#website` },
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: insights.map((insight, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        url: `${siteConfig.url}/blog/${insight.slug}`,
+        name: insight.title,
+      })),
+    },
+  };
 
   return (
-    <div ref={container} className="min-h-screen" style={{ backgroundColor: 'rgba(255,255,255,0.72)', backdropFilter: 'blur(16px)' }}>
-
-      {/* Page Header */}
-      <div className="pt-24 pb-12 md:pt-32 md:pb-16 bg-white">
-      <div className="max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-16">
-        <div className="blog-header max-w-2xl mx-auto text-center">
-          <span className="font-mono text-[10px] font-semibold tracking-[0.25em] uppercase text-[#B8860B] mb-5 block">
-            Intelligence
-          </span>
-          <h1 className="font-heading uppercase tracking-wide text-slate-900 leading-[0.9] mb-6"
-              style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)' }}>
-            Insights &amp;<br/>Resources
+    <div className="min-h-screen bg-[#FBF8F1] pt-28 pb-20 sm:pt-36">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(structuredData) }} />
+      <div className="mx-auto max-w-6xl px-5 sm:px-8 lg:px-12">
+        <header className="max-w-3xl border-b border-[#d8c9a8] pb-10 sm:pb-14">
+          <p className="mb-4 text-sm font-semibold tracking-wide text-[#8a6200]">Tech Avora insights</p>
+          <h1 className="font-heading text-4xl uppercase leading-[1.02] tracking-wide text-[#24180f] sm:text-6xl">
+            AI data operations, explained
           </h1>
-          <p className="font-sans text-slate-600 text-lg md:text-[19px] leading-[1.7] max-w-lg mx-auto">
-            A curated reading list of third-party references on synthetic data, annotation, data quality, and AI deployment.
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-700">
+            Field guides for teams preparing data, evaluating AI systems, and moving from a promising pilot to dependable operations.
           </p>
-        </div>
-      </div>
-    </div>
+        </header>
 
-      <div className="max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-16 py-14 md:py-20">
-
-        {/* Featured Article */}
-        <a
-          href={featured.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="blog-card group block mb-12 md:mb-16"
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 border border-slate-200/80 bg-white/90 hover:shadow-lg transition-all duration-300 overflow-hidden rounded-sm">
-            {/* Image side */}
-            <div className="lg:col-span-5 min-h-[240px] lg:min-h-0 relative overflow-hidden bg-slate-800">
-              <Image
-                src="/abstract.webp"
-                alt=""
-                fill
-                sizes="(max-width: 1024px) 100vw, 42vw"
-                className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/10" />
-              <div className="absolute top-5 left-5">
-                <span className={`inline-block text-[10px] font-mono font-semibold uppercase tracking-[0.18em] border px-2.5 py-1 rounded-sm ${categoryColors[featured.category]}`}>
-                  {featured.category}
-                </span>
-              </div>
-            </div>
-            {/* Text side */}
-            <div className="lg:col-span-7 p-8 md:p-12 flex flex-col justify-between">
-              <div>
-                <div className="flex items-center gap-3 mb-5">
-                  <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">{featured.source}</span>
-                  <span className="w-1 h-1 rounded-full bg-slate-300" />
-                </div>
-                <h2 className="font-heading text-3xl md:text-4xl uppercase tracking-wide text-slate-900 group-hover:text-[#B8860B] transition-colors leading-tight mb-5">
-                  {featured.title}
-                </h2>
-                <p className="text-slate-600 text-base md:text-[17px] leading-[1.75] font-sans">
-                  {featured.excerpt}
-                </p>
-              </div>
-              <div className="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between">
-                <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-900 group-hover:text-[#B8860B] transition-colors">
-                  Open resource
-                </span>
-                <div className="w-10 h-10 border border-slate-200 flex items-center justify-center group-hover:border-[#B8860B] group-hover:text-[#B8860B] transition-colors">
-                  <ExternalLink className="w-4 h-4" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </a>
-
-        {/* Grid */}
-        <div className="blog-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-          {rest.map((post, i) => (
-            <a
-              key={i}
-              href={post.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="blog-card group flex flex-col border border-slate-200/80 bg-white/90 hover:shadow-md hover:border-slate-300 transition-all duration-300 rounded-sm overflow-hidden"
-            >
-              <div className="px-6 pt-6">
-                <span className={`inline-block text-[10px] font-mono font-semibold uppercase tracking-[0.18em] border px-2.5 py-1 rounded-sm mb-4 ${categoryColors[post.category]}`}>
-                  {post.category}
-                </span>
-              </div>
-              <div className="px-6 pb-6 flex flex-col flex-1">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.15em] text-slate-400">{post.source}</span>
-                  <span className="w-0.5 h-0.5 rounded-full bg-slate-300" />
-                  <span className="font-mono text-[9px] text-slate-400 uppercase tracking-[0.12em]">External resource</span>
-                </div>
-                <h2 className="font-heading text-xl md:text-2xl uppercase tracking-wide text-slate-900 group-hover:text-[#B8860B] transition-colors leading-tight mb-3 flex-1">
-                  {post.title}
-                </h2>
-                <p className="text-slate-500 text-sm md:text-[15px] leading-[1.7] font-sans mb-5">
-                  {post.excerpt}
-                </p>
-                <div className="flex items-center justify-between pt-4 border-t border-slate-100">
-                  <span className="font-mono text-[10px] text-slate-400 uppercase tracking-[0.15em]">Open resource</span>
-                  <div className="w-8 h-8 border border-slate-200 flex items-center justify-center group-hover:border-[#B8860B] group-hover:text-[#B8860B] transition-colors">
-                    <ExternalLink className="w-3.5 h-3.5" />
+        <section aria-label="Articles" className="pt-10 sm:pt-14">
+          <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {insights.map((insight) => (
+              <li key={insight.slug}>
+                <article className="flex h-full flex-col border border-[#d8c9a8] bg-white/80 p-6 transition-colors hover:border-[#B8860B] sm:p-7">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#8a6200]">{insight.topic}</p>
+                  <h2 className="mt-4 font-heading text-2xl uppercase leading-tight tracking-wide text-[#24180f]">
+                    <Link href={`/blog/${insight.slug}`} className="rounded-sm hover:text-[#8a6200] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#8a6200]">
+                      {insight.title}
+                    </Link>
+                  </h2>
+                  <p className="mt-4 flex-1 leading-relaxed text-slate-700">{insight.summary}</p>
+                  <div className="mt-6 border-t border-[#e6dcc8] pt-4">
+                    <p className="text-xs text-slate-500">{new Date(`${insight.publishedAt}T00:00:00Z`).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}</p>
+                    <Link href={`/blog/${insight.slug}`} className="mt-3 inline-flex min-h-10 items-center font-semibold text-[#785600] underline decoration-[#b8860b]/50 underline-offset-4 hover:text-[#24180f] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8a6200]">
+                      Read the guide <span aria-hidden="true" className="ml-2">→</span>
+                    </Link>
                   </div>
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
+                </article>
+              </li>
+            ))}
+          </ul>
+        </section>
 
-        <p className="mt-12 font-mono text-[10px] text-slate-400 tracking-[0.15em] uppercase text-center">
-          Articles sourced from IBM, McKinsey & Company, and Wikipedia for educational purposes.
-        </p>
+        <aside className="mt-12 border-l-2 border-[#B8860B] py-2 pl-5 sm:mt-16">
+          <p className="font-semibold text-[#24180f]">Need help with a specific data or AI workflow?</p>
+          <p className="mt-2 text-slate-700">Explore the <Link href="/services" className="font-semibold text-[#785600] underline underline-offset-4">Tech Avora services</Link> or <Link href="/#contact" className="font-semibold text-[#785600] underline underline-offset-4">talk with our team</Link>.</p>
+        </aside>
       </div>
     </div>
   );

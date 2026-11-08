@@ -77,6 +77,25 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Consolidate every public host onto the one canonical origin.
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.techavora.com' }],
+        destination: 'https://techavora.com/:path*',
+        permanent: true,
+      },
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'avoraventure.com' }],
+        destination: 'https://techavora.com/:path*',
+        permanent: true,
+      },
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.avoraventure.com' }],
+        destination: 'https://techavora.com/:path*',
+        permanent: true,
+      },
       // Keep the legacy route discoverable but consolidate it into the clean root URL.
       { source: "/home", destination: "/", permanent: true },
     ];

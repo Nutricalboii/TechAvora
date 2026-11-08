@@ -13,31 +13,31 @@ if (typeof window !== 'undefined') {
 const stages = [
   {
     id: '01',
-    stageIndex: 0,
+    slug: 'ai-solutions',
     title: 'AI Solutions',
     desc: 'Turn quality data into production-ready AI systems.',
   },
   {
     id: '02',
-    stageIndex: 1,
+    slug: 'synthetic-data-generation',
     title: 'Data Generation',
     desc: 'Address data scarcity with realistic, privacy-aware synthetic data.',
   },
   {
     id: '03',
-    stageIndex: 2,
+    slug: 'data-annotation',
     title: 'Data Annotation',
     desc: 'Give raw data its ground truth through expert annotation.',
   },
   {
     id: '04',
-    stageIndex: 3,
+    slug: 'data-labeling',
     title: 'Data Labeling',
     desc: 'Convert unstructured inputs into structured training sets.',
   },
   {
     id: '05',
-    stageIndex: 4,
+    slug: 'data-quality-assurance',
     title: 'Data Quality Assurance',
     desc: 'Validate datasets across eight dimensions before model training.',
   },
@@ -94,7 +94,7 @@ export default function Services() {
           {stages.map((stage) => (
             <div key={stage.title} className="pipeline-step">
               <Link
-                href={`/services?stage=${stage.stageIndex}`}
+                href={`/services/${stage.slug}`}
                 className="flex items-start gap-3 sm:gap-4 rounded-xl sm:rounded-2xl p-4 sm:p-6 border transition-all duration-300 group bg-white border-slate-200 hover:border-[#B8860B]/50 hover:shadow-md"
               >
                 {/* Icon badge */}
