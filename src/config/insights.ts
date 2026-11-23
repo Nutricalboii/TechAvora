@@ -26,7 +26,7 @@ export const insights: Insight[] = [
       'Synthetic data is useful only when it supports a defined task. Compare it with a real baseline, test downstream performance, inspect important subgroups, and evaluate privacy risk separately from utility.',
     topic: 'Synthetic data',
     serviceSlug: 'synthetic-data-generation',
-    publishedAt: '2026-11-08',
+    publishedAt: '2026-09-24',
     sections: [
       {
         heading: 'Start with the decision the data must support',
@@ -82,7 +82,7 @@ export const insights: Insight[] = [
       'Annotation guidelines work when they make decisions repeatable. Define the unit, labels, boundaries, examples, uncertainty, and escalation path, then test the instructions on a representative pilot.',
     topic: 'Annotation',
     serviceSlug: 'data-annotation',
-    publishedAt: '2026-11-08',
+    publishedAt: '2026-09-27',
     sections: [
       {
         heading: 'Define one task in observable terms',
@@ -137,7 +137,7 @@ export const insights: Insight[] = [
       'Reliable ML data checks start with explicit expectations. Validate schemas and business rules, profile important slices, compare training and serving inputs, and route anomalies to an owner.',
     topic: 'Data quality',
     serviceSlug: 'data-quality-assurance',
-    publishedAt: '2026-11-08',
+    publishedAt: '2026-09-30',
     sections: [
       {
         heading: 'Make “good data” specific to the use',
@@ -195,7 +195,7 @@ export const insights: Insight[] = [
       'A working demo is one checkpoint. Production readiness also depends on representative evaluation, data and model controls, user workflows, monitoring, ownership, and a safe response when results change.',
     topic: 'AI implementation',
     serviceSlug: 'ai-solutions',
-    publishedAt: '2026-11-08',
+    publishedAt: '2026-10-03',
     sections: [
       {
         heading: 'Name the user and decision',
@@ -247,7 +247,7 @@ export const insights: Insight[] = [
       'A useful RAG evaluation separates retrieval quality from answer quality. Build representative questions, inspect retrieved evidence, score grounded answers, and test abstention and operational behavior before release.',
     topic: 'AI evaluation',
     serviceSlug: 'ai-solutions',
-    publishedAt: '2026-11-23',
+    publishedAt: '2026-10-06',
     sections: [
       {
         heading: 'Evaluate the pipeline in parts',
@@ -304,7 +304,7 @@ export const insights: Insight[] = [
       'A useful release gate turns data expectations into repeatable checks and clear decisions. Define what must pass, what can be reviewed, who owns exceptions, and how each result is tied to a dataset version.',
     topic: 'Data quality',
     serviceSlug: 'data-quality-assurance',
-    publishedAt: '2026-11-23',
+    publishedAt: '2026-10-09',
     sections: [
       {
         heading: 'Tie every check to a risk or requirement',
@@ -354,7 +354,7 @@ export const insights: Insight[] = [
       'A useful annotation audit samples work across annotators, labels, sources, and difficult cases. Use the findings to fix instructions and workflow causes, not only to report one aggregate score.',
     topic: 'Annotation quality',
     serviceSlug: 'data-annotation',
-    publishedAt: '2026-09-28',
+    publishedAt: '2026-10-12',
     sections: [
       { heading: 'Define what the audit must detect', paragraphs: [
         'Start with the errors that could change a model or business decision. A review intended to catch inconsistent boundaries may need different examples from one intended to detect missed rare labels. Write down the unit being reviewed, the reference decision, and the action that follows a disagreement.',
@@ -380,7 +380,7 @@ export const insights: Insight[] = [
       'When a model result changes, teams need to reconstruct which data and transformations produced it. A compact lineage record links source versions, processing steps, label rules, evaluation results, and release decisions.',
     topic: 'Data governance',
     serviceSlug: 'data-quality-assurance',
-    publishedAt: '2026-10-05',
+    publishedAt: '2026-10-15',
     sections: [
       { heading: 'Record identity and intended use', paragraphs: [
         'Give each dataset release a stable identifier and describe its intended task, population, time period, and known exclusions. Record the owner and approved use so downstream teams do not infer permission or suitability from a filename.',
@@ -409,7 +409,7 @@ export const insights: Insight[] = [
       'A distribution change is a prompt to investigate, not proof that a model has failed. Compare inputs with a relevant baseline, examine important slices, and connect alerts to measurable decisions and owners.',
     topic: 'Production AI',
     serviceSlug: 'ai-solutions',
-    publishedAt: '2026-10-12',
+    publishedAt: '2026-10-18',
     sections: [
       { heading: 'Choose a baseline that fits the data', paragraphs: [
         'The previous day may be a poor reference for a seasonal workflow, while a year-old baseline may hide a recent source change. Choose comparison windows that reflect the operating cycle and record the reason for the choice. Check both data freshness and completeness before interpreting a shift.',
@@ -435,7 +435,7 @@ export const insights: Insight[] = [
       'An evaluation set should represent the decisions a system will face, including difficult and unsupported cases. Protect the holdout, review the reference labels, and report performance by meaningful slices.',
     topic: 'AI evaluation',
     serviceSlug: 'data-annotation',
-    publishedAt: '2026-10-19',
+    publishedAt: '2026-10-21',
     sections: [
       { heading: 'Sample from the intended workflow', paragraphs: [
         'Define the users, inputs, context, and decisions the system will support. Draw examples from the expected sources and include variation in wording, format, quality, and difficulty. If production data cannot be used, document how the replacement examples were constructed and what they fail to represent.',
@@ -461,7 +461,7 @@ export const insights: Insight[] = [
       'Removing direct identifiers does not by itself make a dataset safe to share. Match privacy controls to the data, recipients, purpose, and plausible ways records could be linked or misused.',
     topic: 'Data governance',
     serviceSlug: 'data-quality-assurance',
-    publishedAt: '2026-10-26',
+    publishedAt: '2026-10-24',
     sections: [
       { heading: 'Define the sharing purpose and audience', paragraphs: [
         'Write down what the recipient needs to do, which fields are necessary, how long access is needed, and whether the data can be combined with other sources. Limit the share to that purpose and audience, and confirm the appropriate legal and organizational basis with the responsible privacy team.',
@@ -490,7 +490,7 @@ export const insights: Insight[] = [
       'Human review helps only when reviewers have context, authority, and a clear way to handle uncertainty. Design the queue, escalation rules, and feedback loop around the actual decision and its risks.',
     topic: 'AI operations',
     serviceSlug: 'ai-solutions',
-    publishedAt: '2026-11-02',
+    publishedAt: '2026-10-27',
     sections: [
       { heading: 'Decide which cases need review', paragraphs: [
         'Route cases according to risk, uncertainty, and workflow requirements. A confidence score alone may be poorly calibrated or miss unfamiliar errors. Combine it with rule-based triggers, user reports, and periodic random review to detect failures the system does not flag itself.',
@@ -516,7 +516,7 @@ export const insights: Insight[] = [
       'A production monitoring plan combines technical health with model and workflow outcomes. Define signals, thresholds, owners, and safe responses before rollout, then review them as the system changes.',
     topic: 'Production AI',
     serviceSlug: 'ai-solutions',
-    publishedAt: '2026-11-09',
+    publishedAt: '2026-10-30',
     sections: [
       { heading: 'Monitor more than service uptime', paragraphs: [
         'Availability and latency show whether a service responds, not whether its output is useful. Track input quality, model quality when labels become available, task completion, user corrections, and important subgroup outcomes. Choose signals that reflect the system’s intended use.',
@@ -535,6 +535,129 @@ export const insights: Insight[] = [
       { title: 'Google ML: Monitoring production ML systems', url: 'https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring' },
       { title: 'NIST AI Risk Management Framework', url: 'https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10' },
     ],
+  },
+  {
+    slug: 'create-a-data-contract-for-ml-pipelines',
+    title: 'How to Create a Data Contract for an ML Pipeline',
+    description: 'Define a practical data contract for machine learning with field meaning, quality rules, ownership, compatibility, and change handling.',
+    summary: 'A data contract makes expectations visible between data producers and ML teams. Specify meaning, structure, quality, ownership, and what happens when an upstream source changes.',
+    topic: 'Data quality',
+    serviceSlug: 'data-quality-assurance',
+    publishedAt: '2026-11-02',
+    sections: [
+      { heading: 'Describe the data in terms of the workflow', paragraphs: [
+        'For each field, record its business meaning, type, unit, allowed values, source, and whether it can be absent. Clarify event time versus processing time, timezone assumptions, and how corrections or late-arriving records are represented.',
+        'A schema alone cannot explain whether a field is suitable for a model. Include the intended population, known exclusions, privacy classification, and the decision the data supports.',
+      ]},
+      { heading: 'Make quality checks testable', paragraphs: [
+        'Turn important expectations into checks for completeness, validity, freshness, uniqueness, relationships, and distribution. Name thresholds and owners. Distinguish a release blocker from a warning that needs human review.',
+        'Use sample-based semantic checks for properties that cannot be reliably captured in code. Keep the sample selection and review rationale with the release record.',
+      ], bullets: ['Version the contract with the pipeline.', 'Notify downstream owners before breaking changes.', 'Record exceptions with a reason, approver, and review date.']},
+      { heading: 'Plan for change and failure', paragraphs: [
+        'Define compatibility rules and a deprecation window for changes to field meaning, source, format, or availability. Decide whether a failed check blocks processing, quarantines affected records, or allows a documented exception.',
+        'Review contracts when the workflow, population, or model use changes. A contract is valuable when the people who produce and consume the data can maintain it and act on its results.',
+      ]},
+    ],
+    references: [{ title: 'TensorFlow Data Validation guide', url: 'https://www.tensorflow.org/tfx/guide/tfdv' }],
+  },
+  {
+    slug: 'build-a-review-loop-for-data-labeling',
+    title: 'Building a Review Loop for Data Labeling Teams',
+    description: 'Connect annotation audits, adjudication, guideline updates, and reviewer calibration in a repeatable quality loop.',
+    summary: 'A labeling quality loop turns disagreements into clearer rules and more consistent future work. Make review outcomes traceable, calibrate against shared examples, and check whether fixes reduce recurring errors.',
+    topic: 'Annotation',
+    serviceSlug: 'data-annotation',
+    publishedAt: '2026-11-06',
+    sections: [
+      { heading: 'Capture the disagreement, not only the score', paragraphs: [
+        'When reviewers disagree, preserve the item, decisions, guideline version, and final rationale. Categorize the issue as unclear guidance, missing context, tool behavior, source quality, or an annotator error. This helps the team choose the right correction.',
+        'Keep a small, reviewed calibration set with examples that represent routine and difficult cases. Use it when onboarding annotators or after a material guideline change.',
+      ]},
+      { heading: 'Adjudicate with consistent decision rights', paragraphs: [
+        'Specify who can resolve a disagreement, when a subject-matter expert is needed, and when an item should remain uncertain or be excluded. Adjudicators should apply the documented task criteria rather than introduce private interpretations.',
+        'If adjudication changes a rule, version the update and identify whether earlier items should be rechecked. Communicate the change before the next batch begins.',
+      ], bullets: ['Track issue type and frequency.', 'Re-review examples affected by rule changes.', 'Keep abstention and escalation available for insufficient evidence.']},
+      { heading: 'Measure whether the loop is working', paragraphs: [
+        'Review disagreement patterns, quality samples, turnaround time, and repeated corrections by task type. Do not rely on a single agreement number: class prevalence and sample design can influence what it appears to show.',
+        'After a process change, sample new work to see whether the specific issue declined without causing new errors. Retire checks that no longer inform a decision and add checks when a measurable failure mode appears.',
+      ]},
+    ],
+    references: [{ title: 'NIST AI Risk Management Framework Playbook', url: 'https://airc.nist.gov/AI_RMF_Knowledge_Base/Playbook' }],
+  },
+  {
+    slug: 'choose-between-real-and-synthetic-training-data',
+    title: 'Choosing Between Real and Synthetic Training Data',
+    description: 'Compare real and synthetic data for an AI task by coverage, label quality, privacy, utility, and operational constraints.',
+    summary: 'The choice depends on the task and evidence available. Compare candidate data on representative held-out examples, examine subgroup coverage, and assess privacy and provenance as separate requirements.',
+    topic: 'Synthetic data',
+    serviceSlug: 'synthetic-data-generation',
+    publishedAt: '2026-11-10',
+    sections: [
+      { heading: 'Start from the data gap', paragraphs: [
+        'Identify whether the problem is insufficient volume, rare scenarios, expensive labeling, restricted access, or missing edge cases. Synthetic examples may help with some gaps, but they do not automatically reproduce the real task distribution or correct missing domain knowledge.',
+        'Document what real data represents and what it excludes. Compare the intended population, source conditions, label process, and time period before deciding which data is suitable.',
+      ]},
+      { heading: 'Compare utility with held-out real examples', paragraphs: [
+        'Train or evaluate under a controlled design and measure performance on a held-out set that reflects the intended use. Keep the evaluation data out of generation and tuning. Inspect failures by important slice and example type.',
+        'If reliable real evaluation examples are unavailable, be explicit about that limit. Similarity checks or expert review can provide useful evidence, but neither alone proves downstream performance.',
+      ]},
+      { heading: 'Assess privacy and provenance separately', paragraphs: [
+        'For real data, verify approved purpose, access, retention, and handling. For synthetic data, examine whether records or distinctive patterns could reveal source information and document the generation process. The word synthetic does not itself establish anonymity.',
+        'A practical decision records the source, intended use, evaluation results, privacy review, known limitations, and owner. Revisit the choice when the task or data changes.',
+      ]},
+    ],
+    references: [
+      { title: 'NIST Privacy Framework', url: 'https://www.nist.gov/privacy-framework' },
+      { title: 'NIST AI Risk Management Framework', url: 'https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10' },
+    ],
+  },
+  {
+    slug: 'prepare-multimodal-data-for-ai-training',
+    title: 'Preparing Image, Audio, and Text Data for AI Training',
+    description: 'A multimodal data preparation checklist for provenance, metadata, quality review, alignment, and representative evaluation.',
+    summary: 'Multimodal datasets need modality-specific checks plus shared controls for provenance, consent, labels, and versioning. Validate alignment and task relevance before scaling collection or annotation.',
+    topic: 'AI data preparation',
+    serviceSlug: 'data-annotation',
+    publishedAt: '2026-11-16',
+    sections: [
+      { heading: 'Preserve source context and provenance', paragraphs: [
+        'Record where each asset came from, when it was captured or created, applicable usage restrictions, and how it was transformed. Preserve links between an asset and its labels without exposing unnecessary personal information.',
+        'Keep metadata such as language, duration, resolution, device, or collection context when it is relevant to the task. Document missing or unreliable metadata so downstream users do not treat it as ground truth.',
+      ]},
+      { heading: 'Check quality by modality', paragraphs: [
+        'For images, inspect resolution, corruption, duplicates, and meaningful variation. For audio, examine clipping, silence, channel issues, and transcript alignment. For text, review encoding, truncation, formatting artifacts, and language identification.',
+        'Automated checks can flag patterns, but representative human review remains useful for semantic quality. Use a rubric and sample across sources, classes, and difficult cases.',
+      ], bullets: ['Verify paired text and media refer to the same example.', 'Keep label and transcript versions traceable to source assets.', 'Review rare and high-impact cases separately.']},
+      { heading: 'Evaluate the data in the intended task', paragraphs: [
+        'Check whether examples cover the conditions the model will encounter and whether labels reflect the operational definition. Evaluate on a protected holdout with realistic variation and report performance by important slice.',
+        'Define retention, access, and deletion rules for raw media and derived files. The appropriate controls depend on content, purpose, and jurisdiction; involve the relevant privacy and security owners when the data requires it.',
+      ]},
+    ],
+    references: [{ title: 'NIST AI Risk Management Framework', url: 'https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10' }],
+  },
+  {
+    slug: 'operationalize-ai-data-quality-metrics',
+    title: 'Turning AI Data Quality Metrics Into Operational Decisions',
+    description: 'Connect data quality measures to release gates, owners, escalation paths, and measurable follow-up actions.',
+    summary: 'A metric is operational only when teams know what it means, when it matters, and what action follows. Tie each measure to a use case, owner, threshold, and response path.',
+    topic: 'Data operations',
+    serviceSlug: 'data-quality-assurance',
+    publishedAt: '2026-11-23',
+    sections: [
+      { heading: 'Choose measures that answer a decision', paragraphs: [
+        'For each metric, state the question it answers. Completeness may tell a team whether a source is usable; label disagreement may indicate a guideline problem; coverage may identify a gap in a critical case. Avoid collecting scores that do not change a decision or trigger useful investigation.',
+        'Document the population, calculation, time window, and limitations. If a score depends on sampling, include the method and sample size so readers can interpret it correctly.',
+      ]},
+      { heading: 'Set thresholds with owners', paragraphs: [
+        'Thresholds should reflect the workflow and cost of failure. Define who reviews a warning, who can approve an exception, and what blocks a release. Include an expiration or review date for exceptions so they do not become permanent by default.',
+        'Keep source quality, label quality, model quality, and workflow outcome measures distinct. Combining them can obscure where the problem originates.',
+      ]},
+      { heading: 'Create a feedback and improvement loop', paragraphs: [
+        'For each alert, record the observed issue, affected data, response, and resolution. Review recurring alerts to identify upstream causes and remove noisy checks. When a change is made, verify whether the intended failure rate or decision improved.',
+        'Share a concise release record with downstream users: what passed, what needs review, what is excluded, and who owns follow-up. That turns quality measurement into a routine operating practice.',
+      ]},
+    ],
+    references: [{ title: 'TensorFlow Data Validation guide', url: 'https://www.tensorflow.org/tfx/guide/tfdv' }],
   },
 ];
 
