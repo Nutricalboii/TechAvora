@@ -10,7 +10,7 @@ const BASE_URL = siteConfig.url;
 // Update this when indexable page content changes, not on every deploy.
 const SITE_LAST_MODIFIED = new Date('2026-11-02T00:00:00.000Z');
 const CONTENT_LAST_MODIFIED = new Date(
-  `${insights.reduce((latest, insight) => insight.publishedAt > latest ? insight.publishedAt : latest, '1970-01-01')}T00:00:00.000Z`,
+  `${insights.reduce((latest, insight) => (insight.updatedAt ?? insight.publishedAt) > latest ? (insight.updatedAt ?? insight.publishedAt) : latest, '1970-01-01')}T00:00:00.000Z`,
 );
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -39,9 +39,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     })),
-    ...insights.map(({ slug, publishedAt }) => ({
+    ...insights.map(({ slug, publishedAt, updatedAt }) => ({
       url: `${BASE_URL}/blog/${slug}`,
-      lastModified: new Date(`${publishedAt}T00:00:00.000Z`),
+      lastModified: new Date(`${updatedAt ?? publishedAt}T00:00:00.000Z`),
       changeFrequency: 'monthly' as const,
       priority: 0.7,
     })),

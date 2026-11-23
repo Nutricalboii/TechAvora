@@ -72,7 +72,7 @@ export default async function InsightArticlePage({ params }: InsightPageProps) {
       description: insight.description,
       articleSection: insight.topic,
       datePublished: `${insight.publishedAt}T00:00:00.000Z`,
-      dateModified: `${insight.publishedAt}T00:00:00.000Z`,
+      dateModified: `${insight.updatedAt ?? insight.publishedAt}T00:00:00.000Z`,
       inLanguage: 'en',
       mainEntityOfPage: { '@type': 'WebPage', '@id': url },
       author: organization,

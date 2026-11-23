@@ -12,6 +12,7 @@ export type Insight = {
   topic: string;
   serviceSlug: string;
   publishedAt: string;
+  updatedAt?: string;
   sections: InsightSection[];
   references: { title: string; url: string }[];
 };
@@ -543,7 +544,8 @@ export const insights: Insight[] = [
     summary: 'A data contract makes expectations visible between data producers and ML teams. Specify meaning, structure, quality, ownership, and what happens when an upstream source changes.',
     topic: 'Data quality',
     serviceSlug: 'data-quality-assurance',
-    publishedAt: '2026-11-02',
+    publishedAt: '2026-10-26',
+    updatedAt: '2026-11-23',
     sections: [
       { heading: 'Describe the data in terms of the workflow', paragraphs: [
         'For each field, record its business meaning, type, unit, allowed values, source, and whether it can be absent. Clarify event time versus processing time, timezone assumptions, and how corrections or late-arriving records are represented.',
@@ -557,8 +559,14 @@ export const insights: Insight[] = [
         'Define compatibility rules and a deprecation window for changes to field meaning, source, format, or availability. Decide whether a failed check blocks processing, quarantines affected records, or allows a documented exception.',
         'Review contracts when the workflow, population, or model use changes. A contract is valuable when the people who produce and consume the data can maintain it and act on its results.',
       ]},
+      { heading: 'Industry context: AI platforms are bringing data controls together', paragraphs: [
+        'On October 26, 2026, Atos announced an AI suite combining data management, orchestration, and governance. The announcement highlights a practical implementation concern: teams need clear data expectations and change controls across systems as AI moves into operational workflows.',
+      ]},
     ],
-    references: [{ title: 'TensorFlow Data Validation guide', url: 'https://www.tensorflow.org/tfx/guide/tfdv' }],
+    references: [
+      { title: 'TensorFlow Data Validation guide', url: 'https://www.tensorflow.org/tfx/guide/tfdv' },
+      { title: 'Atos announces Genesis Intelligence, October 26, 2026', url: 'https://www.atos.ai/sites/default/files/2026-10/Global%20PR%20-%20Atos%20launches%20Atos%20Genesis%20Intelligence%20suite%20featuring%20Atos%20Codex%20to%20address%20the%20full%20AI%20application%20spectrum_0.pdf' },
+    ],
   },
   {
     slug: 'build-a-review-loop-for-data-labeling',
@@ -567,7 +575,8 @@ export const insights: Insight[] = [
     summary: 'A labeling quality loop turns disagreements into clearer rules and more consistent future work. Make review outcomes traceable, calibrate against shared examples, and check whether fixes reduce recurring errors.',
     topic: 'Annotation',
     serviceSlug: 'data-annotation',
-    publishedAt: '2026-11-06',
+    publishedAt: '2026-10-08',
+    updatedAt: '2026-11-23',
     sections: [
       { heading: 'Capture the disagreement, not only the score', paragraphs: [
         'When reviewers disagree, preserve the item, decisions, guideline version, and final rationale. Categorize the issue as unclear guidance, missing context, tool behavior, source quality, or an annotator error. This helps the team choose the right correction.',
@@ -581,8 +590,14 @@ export const insights: Insight[] = [
         'Review disagreement patterns, quality samples, turnaround time, and repeated corrections by task type. Do not rely on a single agreement number: class prevalence and sample design can influence what it appears to show.',
         'After a process change, sample new work to see whether the specific issue declined without causing new errors. Retire checks that no longer inform a decision and add checks when a measurable failure mode appears.',
       ]},
+      { heading: 'Industry context: oversight is reaching AI development workflows', paragraphs: [
+        'On October 8, 2026, the UK Information Commissioner’s Office reported securing changes from leading AI developers as scrutiny extended to AI agents. For data teams, keep review decisions, guidance versions, and escalation paths traceable as systems and use cases evolve.',
+      ]},
     ],
-    references: [{ title: 'NIST AI Risk Management Framework Playbook', url: 'https://airc.nist.gov/AI_RMF_Knowledge_Base/Playbook' }],
+    references: [
+      { title: 'NIST AI Risk Management Framework Playbook', url: 'https://airc.nist.gov/AI_RMF_Knowledge_Base/Playbook' },
+      { title: 'UK ICO: Changes secured from leading AI developers, October 8, 2026', url: 'https://ico.org.uk/about-the-ico/media-centre/news-and-blogs/2026/10/ico-secures-changes-from-leading-ai-developers-as-scrutiny-extends-to-ai-agents/' },
+    ],
   },
   {
     slug: 'choose-between-real-and-synthetic-training-data',
@@ -591,7 +606,8 @@ export const insights: Insight[] = [
     summary: 'The choice depends on the task and evidence available. Compare candidate data on representative held-out examples, examine subgroup coverage, and assess privacy and provenance as separate requirements.',
     topic: 'Synthetic data',
     serviceSlug: 'synthetic-data-generation',
-    publishedAt: '2026-11-10',
+    publishedAt: '2026-09-23',
+    updatedAt: '2026-11-23',
     sections: [
       { heading: 'Start from the data gap', paragraphs: [
         'Identify whether the problem is insufficient volume, rare scenarios, expensive labeling, restricted access, or missing edge cases. Synthetic examples may help with some gaps, but they do not automatically reproduce the real task distribution or correct missing domain knowledge.',
@@ -605,10 +621,14 @@ export const insights: Insight[] = [
         'For real data, verify approved purpose, access, retention, and handling. For synthetic data, examine whether records or distinctive patterns could reveal source information and document the generation process. The word synthetic does not itself establish anonymity.',
         'A practical decision records the source, intended use, evaluation results, privacy review, known limitations, and owner. Revisit the choice when the task or data changes.',
       ]},
+      { heading: 'Industry context: governance is part of AI data utility', paragraphs: [
+        'On September 23, 2026, Collibra announced new enterprise AI governance capabilities, including tools for mapping data and managing agent controls. Product announcements do not establish that a dataset is safe or fit for a task; teams still need their own utility, privacy, and provenance evidence.',
+      ]},
     ],
     references: [
       { title: 'NIST Privacy Framework', url: 'https://www.nist.gov/privacy-framework' },
       { title: 'NIST AI Risk Management Framework', url: 'https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10' },
+      { title: 'Collibra announces enterprise AI governance capabilities, September 23, 2026', url: 'https://www.prnewswire.com/news-releases/collibra-launches-new-capabilities-to-reduce-the-hallucination-tax-on-enterprise-ai-302886404.html' },
     ],
   },
   {
@@ -618,7 +638,8 @@ export const insights: Insight[] = [
     summary: 'Multimodal datasets need modality-specific checks plus shared controls for provenance, consent, labels, and versioning. Validate alignment and task relevance before scaling collection or annotation.',
     topic: 'AI data preparation',
     serviceSlug: 'data-annotation',
-    publishedAt: '2026-11-16',
+    publishedAt: '2026-10-07',
+    updatedAt: '2026-11-23',
     sections: [
       { heading: 'Preserve source context and provenance', paragraphs: [
         'Record where each asset came from, when it was captured or created, applicable usage restrictions, and how it was transformed. Preserve links between an asset and its labels without exposing unnecessary personal information.',
@@ -632,8 +653,14 @@ export const insights: Insight[] = [
         'Check whether examples cover the conditions the model will encounter and whether labels reflect the operational definition. Evaluate on a protected holdout with realistic variation and report performance by important slice.',
         'Define retention, access, and deletion rules for raw media and derived files. The appropriate controls depend on content, purpose, and jurisdiction; involve the relevant privacy and security owners when the data requires it.',
       ]},
+      { heading: 'Industry context: data quality remains a production priority', paragraphs: [
+        'On October 7, 2026, Dell announced updates to its AI Data Platform aimed at improving context and quality for AI systems. For multimodal projects, check source alignment, metadata, and quality at every transformation step rather than assuming a platform can repair weak inputs.',
+      ]},
     ],
-    references: [{ title: 'NIST AI Risk Management Framework', url: 'https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10' }],
+    references: [
+      { title: 'NIST AI Risk Management Framework', url: 'https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10' },
+      { title: 'Dell AI Data Platform updates, October 7, 2026', url: 'https://www.itpro.com/business/data-and-insights/dell-technologies-eyes-agentic-context-and-quality-gains-with-new-ai-data-platform-features' },
+    ],
   },
   {
     slug: 'operationalize-ai-data-quality-metrics',
@@ -642,7 +669,8 @@ export const insights: Insight[] = [
     summary: 'A metric is operational only when teams know what it means, when it matters, and what action follows. Tie each measure to a use case, owner, threshold, and response path.',
     topic: 'Data operations',
     serviceSlug: 'data-quality-assurance',
-    publishedAt: '2026-11-23',
+    publishedAt: '2026-11-19',
+    updatedAt: '2026-11-23',
     sections: [
       { heading: 'Choose measures that answer a decision', paragraphs: [
         'For each metric, state the question it answers. Completeness may tell a team whether a source is usable; label disagreement may indicate a guideline problem; coverage may identify a gap in a critical case. Avoid collecting scores that do not change a decision or trigger useful investigation.',
@@ -656,8 +684,14 @@ export const insights: Insight[] = [
         'For each alert, record the observed issue, affected data, response, and resolution. Review recurring alerts to identify upstream causes and remove noisy checks. When a change is made, verify whether the intended failure rate or decision improved.',
         'Share a concise release record with downstream users: what passed, what needs review, what is excluded, and who owns follow-up. That turns quality measurement into a routine operating practice.',
       ]},
+      { heading: 'Industry context: governance gaps are surfacing with adoption', paragraphs: [
+        'A November 19, 2026 report on research from Inforcer described businesses adopting AI faster than they implement controls for sensitive data. Measurable ownership, access rules, and exception handling help turn governance expectations into operational practice.',
+      ]},
     ],
-    references: [{ title: 'TensorFlow Data Validation guide', url: 'https://www.tensorflow.org/tfx/guide/tfdv' }],
+    references: [
+      { title: 'TensorFlow Data Validation guide', url: 'https://www.tensorflow.org/tfx/guide/tfdv' },
+      { title: 'Inforcer research on AI data governance gaps, November 19, 2026', url: 'https://www.itpro.com/security/data-protection/inforcer-report-finds-major-data-governance-gap-among-businesses-deploying-ai' },
+    ],
   },
 ];
 
