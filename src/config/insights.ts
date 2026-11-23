@@ -345,6 +345,197 @@ export const insights: Insight[] = [
       { title: 'NIST AI Risk Management Framework', url: 'https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10' },
     ],
   },
+  {
+    slug: 'sampling-plan-for-annotation-quality',
+    title: 'A Practical Sampling Plan for Annotation Quality',
+    description:
+      'Plan annotation quality reviews with representative samples, risk-based coverage, adjudication, and clear escalation rules.',
+    summary:
+      'A useful annotation audit samples work across annotators, labels, sources, and difficult cases. Use the findings to fix instructions and workflow causes, not only to report one aggregate score.',
+    topic: 'Annotation quality',
+    serviceSlug: 'data-annotation',
+    publishedAt: '2026-09-28',
+    sections: [
+      { heading: 'Define what the audit must detect', paragraphs: [
+        'Start with the errors that could change a model or business decision. A review intended to catch inconsistent boundaries may need different examples from one intended to detect missed rare labels. Write down the unit being reviewed, the reference decision, and the action that follows a disagreement.',
+        'Keep separate measures for label accuracy, completeness, guideline adherence, and unresolved ambiguity. Combining them into one score can hide whether a dataset needs better instructions, more reviewer training, or a revised taxonomy.',
+      ]},
+      { heading: 'Sample across sources of variation', paragraphs: [
+        'A purely random sample is a useful baseline, but may contain too few examples from rare labels or new data sources. Combine a representative random sample with targeted review of high-risk categories, newly onboarded annotators, edge cases, and examples changed after adjudication.',
+        'Document the sampling frame and selection method. If results are reported as a rate, state the sample size and how the sample was selected. A targeted sample is good for finding issues, but should not be presented as an unbiased estimate of the full dataset without a suitable design.',
+      ], bullets: ['Review across annotators and production batches.', 'Include difficult and low-frequency labels.', 'Keep targeted risk samples distinct from representative samples.']},
+      { heading: 'Turn findings into process changes', paragraphs: [
+        'For each disagreement, record its cause: unclear guidance, missing context, tool behavior, a source-data defect, or an annotator mistake. Update the relevant rule and examples, then check whether the same issue appears in earlier work that may need review.',
+        'Set review frequency according to risk and observed stability. Increase sampling after a taxonomy or source change, and reduce it only when evidence shows the process is stable. Preserve a calibration set so new reviewers can be checked against the same documented decisions.',
+      ]},
+    ],
+    references: [{ title: 'NIST AI Risk Management Framework', url: 'https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10' }],
+  },
+  {
+    slug: 'dataset-lineage-for-machine-learning',
+    title: 'Dataset Lineage: What to Record for Every AI Release',
+    description:
+      'A practical dataset lineage checklist connecting source data, transformations, labels, evaluation, and deployed model versions.',
+    summary:
+      'When a model result changes, teams need to reconstruct which data and transformations produced it. A compact lineage record links source versions, processing steps, label rules, evaluation results, and release decisions.',
+    topic: 'Data governance',
+    serviceSlug: 'data-quality-assurance',
+    publishedAt: '2026-10-05',
+    sections: [
+      { heading: 'Record identity and intended use', paragraphs: [
+        'Give each dataset release a stable identifier and describe its intended task, population, time period, and known exclusions. Record the owner and approved use so downstream teams do not infer permission or suitability from a filename.',
+        'A dataset card or equivalent record should make assumptions and limitations easy to find. The format can be lightweight, but it should be maintained alongside the data and point to the exact release it describes.',
+      ]},
+      { heading: 'Connect sources to transformations', paragraphs: [
+        'Capture source system versions, ingestion dates, filters, joins, deduplication, normalization, and other material transformations. Link the code or pipeline version and store the checks that ran at each handoff. This helps distinguish a source change from a processing change.',
+        'For labeled data, include the guideline version, annotator or reviewer workflow identifiers where appropriate, adjudication decisions, and any relabeling history. Apply access controls to records that could identify workers or contain sensitive examples.',
+      ], bullets: ['Dataset release ID and time window.', 'Source and transformation versions.', 'Schema and quality-check results.', 'Label guideline version and review history.', 'Evaluation-set links and model release association.']},
+      { heading: 'Make lineage useful during an incident', paragraphs: [
+        'A lineage record should support concrete questions: Which releases contain the affected source? Which model versions used them? Can the issue be reproduced? What downstream evaluations must be rerun? Test these questions during normal release reviews rather than waiting for an incident.',
+        'Do not retain raw data indefinitely just to preserve traceability. Keep metadata and reproducibility artifacts consistent with privacy, retention, and security requirements. The correct record is the minimum information needed to understand and govern the release.',
+      ]},
+    ],
+    references: [
+      { title: 'NIST AI Risk Management Framework Playbook', url: 'https://airc.nist.gov/AI_RMF_Knowledge_Base/Playbook' },
+      { title: 'Google ML: Data preparation and feature engineering', url: 'https://developers.google.com/machine-learning/data-prep' },
+    ],
+  },
+  {
+    slug: 'detect-data-drift-without-overreacting',
+    title: 'Detecting Data Drift Without Overreacting to Normal Change',
+    description:
+      'Separate meaningful data drift from expected variation with baselines, context, slice checks, and a documented response process.',
+    summary:
+      'A distribution change is a prompt to investigate, not proof that a model has failed. Compare inputs with a relevant baseline, examine important slices, and connect alerts to measurable decisions and owners.',
+    topic: 'Production AI',
+    serviceSlug: 'ai-solutions',
+    publishedAt: '2026-10-12',
+    sections: [
+      { heading: 'Choose a baseline that fits the data', paragraphs: [
+        'The previous day may be a poor reference for a seasonal workflow, while a year-old baseline may hide a recent source change. Choose comparison windows that reflect the operating cycle and record the reason for the choice. Check both data freshness and completeness before interpreting a shift.',
+        'Monitor features that matter to the model and decision. A dashboard of every column can generate noise; a small set of justified signals is easier to review and maintain.',
+      ]},
+      { heading: 'Interpret shifts by slice and impact', paragraphs: [
+        'A stable overall distribution can hide a change in a subgroup, source, device, or region. Break out the slices that relate to known risks and verify that each has enough observations for the comparison to be meaningful.',
+        'Input drift does not automatically mean performance has degraded. Where reliable outcomes become available, compare model errors and workflow results as well. If outcomes are delayed, treat input shifts as investigation signals and state that limitation clearly.',
+      ]},
+      { heading: 'Give alerts an operational response', paragraphs: [
+        'For each alert, specify the threshold, owner, triage steps, and possible actions. The response might be to repair an upstream feed, collect labels, restrict a use, or take no action after confirming expected seasonality. Avoid automatic retraining based on a drift score alone.',
+        'Keep examples and notes from reviewed alerts. Use them to tune thresholds and preserve a record of why the team proceeded, constrained the system, or rolled back a change.',
+      ]},
+    ],
+    references: [{ title: 'Google ML: Monitoring production ML systems', url: 'https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring' }],
+  },
+  {
+    slug: 'design-a-robust-ai-evaluation-set',
+    title: 'Designing an Evaluation Set That Reflects Real AI Use',
+    description:
+      'Build an AI evaluation set with representative cases, risk-based coverage, stable labels, protected holdouts, and useful error analysis.',
+    summary:
+      'An evaluation set should represent the decisions a system will face, including difficult and unsupported cases. Protect the holdout, review the reference labels, and report performance by meaningful slices.',
+    topic: 'AI evaluation',
+    serviceSlug: 'data-annotation',
+    publishedAt: '2026-10-19',
+    sections: [
+      { heading: 'Sample from the intended workflow', paragraphs: [
+        'Define the users, inputs, context, and decisions the system will support. Draw examples from the expected sources and include variation in wording, format, quality, and difficulty. If production data cannot be used, document how the replacement examples were constructed and what they fail to represent.',
+        'Include unsupported requests and missing-context cases. A model that performs well only when the answer is present in the prompt may behave poorly when the real workflow is uncertain or incomplete.',
+      ]},
+      { heading: 'Protect the test from tuning leakage', paragraphs: [
+        'Separate development examples from the final holdout and limit access to the holdout when teams are iterating. If examples repeatedly guide prompt or model changes, they have become development data and should not be treated as an untouched final test.',
+        'Version the examples and reference labels. When a label changes, record why and which evaluation runs need to be repeated. Preserve prior results so a score change can be traced to a system change or a corrected reference.',
+      ]},
+      { heading: 'Report performance people can act on', paragraphs: [
+        'Choose metrics that match the task and consequences of error. Include sample counts, uncertainty, and relevant slices. Review representative failures and explain what the aggregate score leaves out.',
+        'Set release thresholds before looking at the final results. If a threshold fails, identify whether the gap is in the data, labeling, model, interface, or operating procedure. This makes evaluation a release decision aid rather than a marketing number.',
+      ]},
+    ],
+    references: [{ title: 'NIST AI Risk Management Framework', url: 'https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10' }],
+  },
+  {
+    slug: 'privacy-checklist-for-ai-datasets',
+    title: 'A Privacy Checklist Before Sharing an AI Dataset',
+    description:
+      'Review purpose, identifiability, access, retention, and residual risks before sharing datasets for AI development or evaluation.',
+    summary:
+      'Removing direct identifiers does not by itself make a dataset safe to share. Match privacy controls to the data, recipients, purpose, and plausible ways records could be linked or misused.',
+    topic: 'Data governance',
+    serviceSlug: 'data-quality-assurance',
+    publishedAt: '2026-10-26',
+    sections: [
+      { heading: 'Define the sharing purpose and audience', paragraphs: [
+        'Write down what the recipient needs to do, which fields are necessary, how long access is needed, and whether the data can be combined with other sources. Limit the share to that purpose and audience, and confirm the appropriate legal and organizational basis with the responsible privacy team.',
+        'Classify direct identifiers, quasi-identifiers, sensitive attributes, free text, and derived fields. Data that appears harmless in isolation may become identifying when combined with location, time, or external records.',
+      ]},
+      { heading: 'Reduce exposure and control access', paragraphs: [
+        'Remove fields that are not needed, generalize or transform others where appropriate, and consider whether a smaller sample or synthetic alternative can satisfy the task. Assess the residual risk after transformation rather than assuming that a method guarantees anonymity.',
+        'Use least-privilege access, approved storage, encryption, logging, retention limits, and a clear deletion process. Specify whether onward sharing, copying, or model training is allowed and how that use will be checked.',
+      ]},
+      { heading: 'Review the release and its limits', paragraphs: [
+        'Test the data for direct leakage and plausible linkage risks relevant to the recipient and context. For synthetic or masked datasets, consider whether records or distinctive patterns can still be linked to source individuals. Document the method, checks, known limits, owner, and approval.',
+        'Privacy controls depend on jurisdiction, data type, and use. Bring qualified privacy and legal reviewers into decisions with material risk, and revisit the assessment if the audience, purpose, or data changes.',
+      ]},
+    ],
+    references: [
+      { title: 'NIST Privacy Framework', url: 'https://www.nist.gov/privacy-framework' },
+      { title: 'NIST AI Risk Management Framework', url: 'https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10' },
+    ],
+  },
+  {
+    slug: 'human-review-workflows-for-ai',
+    title: 'Designing Human Review That Improves AI Operations',
+    description:
+      'Set up human review for AI outputs with clear decision rights, escalation, calibrated sampling, and feedback loops.',
+    summary:
+      'Human review helps only when reviewers have context, authority, and a clear way to handle uncertainty. Design the queue, escalation rules, and feedback loop around the actual decision and its risks.',
+    topic: 'AI operations',
+    serviceSlug: 'ai-solutions',
+    publishedAt: '2026-11-02',
+    sections: [
+      { heading: 'Decide which cases need review', paragraphs: [
+        'Route cases according to risk, uncertainty, and workflow requirements. A confidence score alone may be poorly calibrated or miss unfamiliar errors. Combine it with rule-based triggers, user reports, and periodic random review to detect failures the system does not flag itself.',
+        'Define what reviewers can approve, edit, reject, or escalate. Make the consequence of each option visible and provide the evidence needed to decide, including source context and known limitations.',
+      ]},
+      { heading: 'Give reviewers usable instructions', paragraphs: [
+        'Use concise criteria, examples, and an explicit “insufficient evidence” path. Train reviewers on borderline cases and periodically check agreement. If reviewers repeatedly disagree, examine the task and interface instead of treating the disagreement as individual failure.',
+        'Track review volume, turnaround time, overrides, reasons for changes, and downstream outcomes where available. Protect reviewer information and avoid turning operational measurements into unsupported claims about individual performance.',
+      ]},
+      { heading: 'Close the loop safely', paragraphs: [
+        'Feed reviewed examples into evaluation and guideline updates through a controlled process. Do not automatically treat every override as a correct label; investigate the evidence and adjudicate material disagreements. Version changes so teams can tell which behavior was reviewed under which rules.',
+        'Monitor whether review catches the intended failures and whether workload is sustainable. Adjust routing when the system or the operating environment changes, and preserve an escalation path when a reviewer cannot resolve a case.',
+      ]},
+    ],
+    references: [{ title: 'NIST AI Risk Management Framework Playbook', url: 'https://airc.nist.gov/AI_RMF_Knowledge_Base/Playbook' }],
+  },
+  {
+    slug: 'model-release-monitoring-checklist',
+    title: 'A Monitoring Checklist for AI Model Releases',
+    description:
+      'Monitor AI releases across data health, quality, reliability, user impact, and rollback readiness with named owners and thresholds.',
+    summary:
+      'A production monitoring plan combines technical health with model and workflow outcomes. Define signals, thresholds, owners, and safe responses before rollout, then review them as the system changes.',
+    topic: 'Production AI',
+    serviceSlug: 'ai-solutions',
+    publishedAt: '2026-11-09',
+    sections: [
+      { heading: 'Monitor more than service uptime', paragraphs: [
+        'Availability and latency show whether a service responds, not whether its output is useful. Track input quality, model quality when labels become available, task completion, user corrections, and important subgroup outcomes. Choose signals that reflect the system’s intended use.',
+        'For each signal, specify its source, calculation, baseline, threshold, and owner. Include minimum volumes so teams do not overinterpret noisy rates from very small samples.',
+      ]},
+      { heading: 'Prepare release and rollback controls', paragraphs: [
+        'Use a staged rollout where feasible and define the evidence required to expand exposure. Keep a known-good version available, document how to switch back, and check that the fallback path works under realistic conditions.',
+        'Record the model, prompt, data, feature, and configuration versions associated with each release. This is essential when teams need to compare behavior or reproduce an incident.',
+      ]},
+      { heading: 'Make alerts lead to decisions', paragraphs: [
+        'Every alert should tell the responder what changed, which users or cases may be affected, and what action is available. The playbook can include investigation, additional review, data quarantine, use restriction, rollback, or a documented decision to continue.',
+        'Review alerts after incidents and false alarms. Update thresholds based on evidence and record changes. Reassess monitoring when the workflow, population, upstream data, model, or risk profile changes.',
+      ]},
+    ],
+    references: [
+      { title: 'Google ML: Monitoring production ML systems', url: 'https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring' },
+      { title: 'NIST AI Risk Management Framework', url: 'https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10' },
+    ],
+  },
 ];
 
 export const insightBySlug = Object.fromEntries(insights.map((insight) => [insight.slug, insight])) as Record<string, Insight>;
