@@ -9,7 +9,9 @@ const BASE_URL = siteConfig.url;
 
 // Update this when indexable page content changes, not on every deploy.
 const SITE_LAST_MODIFIED = new Date('2026-11-02T00:00:00.000Z');
-const CONTENT_LAST_MODIFIED = new Date('2026-11-08T00:00:00.000Z');
+const CONTENT_LAST_MODIFIED = new Date(
+  `${insights.reduce((latest, insight) => insight.publishedAt > latest ? insight.publishedAt : latest, '1970-01-01')}T00:00:00.000Z`,
+);
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

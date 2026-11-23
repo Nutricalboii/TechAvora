@@ -24,6 +24,7 @@ function safeJsonLd(value: unknown) {
 }
 
 export default function BlogPage() {
+  const latestInsights = [...insights].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
@@ -34,7 +35,7 @@ export default function BlogPage() {
     isPartOf: { '@id': `${siteConfig.url}/#website` },
     mainEntity: {
       '@type': 'ItemList',
-      itemListElement: insights.map((insight, index) => ({
+      itemListElement: latestInsights.map((insight, index) => ({
         '@type': 'ListItem',
         position: index + 1,
         url: `${siteConfig.url}/blog/${insight.slug}`,
@@ -59,7 +60,7 @@ export default function BlogPage() {
 
         <section aria-label="Articles" className="pt-10 sm:pt-14">
           <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {insights.map((insight) => (
+            {latestInsights.map((insight) => (
               <li key={insight.slug}>
                 <article className="flex h-full flex-col border border-[#d8c9a8] bg-white/80 p-6 transition-colors hover:border-[#B8860B] sm:p-7">
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#8a6200]">{insight.topic}</p>

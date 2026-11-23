@@ -238,6 +238,113 @@ export const insights: Insight[] = [
       { title: 'Google: Rules of Machine Learning', url: 'https://developers.google.com/machine-learning/guides/rules-of-ml' },
     ],
   },
+  {
+    slug: 'evaluate-retrieval-augmented-generation-systems',
+    title: 'How to Evaluate a Retrieval-Augmented Generation System',
+    description:
+      'A practical evaluation plan for RAG systems: test retrieval, grounding, answer quality, failure handling, and changes over time.',
+    summary:
+      'A useful RAG evaluation separates retrieval quality from answer quality. Build representative questions, inspect retrieved evidence, score grounded answers, and test abstention and operational behavior before release.',
+    topic: 'AI evaluation',
+    serviceSlug: 'ai-solutions',
+    publishedAt: '2026-11-23',
+    sections: [
+      {
+        heading: 'Evaluate the pipeline in parts',
+        paragraphs: [
+          'A generated answer can be wrong because the relevant source was not retrieved, because the model misread the source, or because the system assembled an answer that the evidence does not support. A single end-to-end score makes these failure causes difficult to distinguish. Review retrieval and generation separately, then measure the combined experience.',
+          'For each test question, keep the expected answer, the supporting source passages, and the intended behavior when the knowledge base has no adequate evidence. This makes it possible to audit why a response passed or failed rather than treating the final text as a black box.',
+        ],
+      },
+      {
+        heading: 'Build a representative test set',
+        paragraphs: [
+          'Collect questions from the real workflow and include paraphrases, ambiguous requests, multi-step questions, outdated information, and questions with no supported answer. Add examples from each important document type and user group. Remove sensitive content that is not needed for testing and control access to the examples that remain.',
+          'Keep a stable holdout set out of prompt and retrieval tuning. When the corpus or product changes, add new cases without silently replacing difficult old cases. Record which corpus version and system configuration produced each evaluation result.',
+        ],
+        bullets: [
+          'Measure whether the retrieved passages contain the evidence needed to answer.',
+          'Check answer correctness and whether each material claim is supported by retrieved evidence.',
+          'Test citation accuracy, refusal behavior, and the response when sources conflict.',
+        ],
+      },
+      {
+        heading: 'Review failures with evidence',
+        paragraphs: [
+          'For every failed case, inspect the query, retrieved passages, final answer, and source citation together. A retrieval miss may call for better chunking, metadata, or query handling. An unsupported answer may require stronger grounding instructions, a narrower response format, or a clearer abstention rule. Avoid changing several components at once without recording what changed.',
+          'Use human review to calibrate automated graders and investigate disagreements. Automated measures are useful for repeatable comparisons, but they can miss domain-specific errors or reward fluent answers that do not satisfy the task.',
+        ],
+      },
+      {
+        heading: 'Test operating conditions, not just quality',
+        paragraphs: [
+          'Measure response time, cost, error rates, and behavior under missing or unavailable sources. Check that access controls apply to retrieved documents and that the system does not expose content to users who should not see it. Define what the product does when retrieval times out or a source is removed.',
+          'Re-run the evaluation after changes to the embedding model, index, corpus, prompt, model, or access policy. Compare by question type and important data slice, not only by an overall average. Keep a release record with the test set version, configuration, findings, and unresolved limitations.',
+        ],
+      },
+      {
+        heading: 'Set release gates before tuning',
+        paragraphs: [
+          'Choose acceptance criteria that reflect the consequences of mistakes. A low-risk internal search helper may need different controls from a system that supports regulated or safety-critical work. Specify minimum retrieval coverage, answer support, citation accuracy, abstention behavior, and operational limits before reviewing results.',
+          'If a release gate fails, narrow the supported use, improve the weak stage, or hold deployment. Documenting that decision helps teams distinguish a measured system from a persuasive demo.',
+        ],
+      },
+    ],
+    references: [
+      { title: 'NIST AI Risk Management Framework', url: 'https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10' },
+      { title: 'NIST AI RMF Playbook', url: 'https://airc.nist.gov/AI_RMF_Knowledge_Base/Playbook' },
+    ],
+  },
+  {
+    slug: 'build-a-data-quality-release-gate',
+    title: 'Building a Data Quality Release Gate for AI Projects',
+    description:
+      'Design an actionable data quality gate for AI releases with representative checks, thresholds, ownership, and exception handling.',
+    summary:
+      'A useful release gate turns data expectations into repeatable checks and clear decisions. Define what must pass, what can be reviewed, who owns exceptions, and how each result is tied to a dataset version.',
+    topic: 'Data quality',
+    serviceSlug: 'data-quality-assurance',
+    publishedAt: '2026-11-23',
+    sections: [
+      {
+        heading: 'Tie every check to a risk or requirement',
+        paragraphs: [
+          'A long checklist can create noise if no one knows why a check exists. For each rule, state the expected condition, the failure it is meant to catch, and what decision follows. Examples include required fields, valid categories, acceptable freshness, duplicate limits, or minimum coverage for an important case.',
+          'Set thresholds with the people who own the workflow. A missing value may be acceptable for one field and a release blocker for another. A shift may signal a source problem, or it may reflect a genuine change in the population. The gate should make that distinction reviewable.',
+        ],
+      },
+      {
+        heading: 'Combine structural and task-level checks',
+        paragraphs: [
+          'Start with deterministic validation of schema, types, ranges, required fields, uniqueness, and relationships. Add distribution and slice checks so aggregate totals do not hide gaps in a small but important group. For labeled data, sample examples and review label consistency, guideline edge cases, and unresolved disagreement.',
+          'Keep the checks close to the data handoff where failures can be traced to their source. Store the rule version and result with the dataset version so later model evaluation can be connected to the exact inputs that passed the gate.',
+        ],
+        bullets: [
+          'Separate hard blockers from warnings that require a named reviewer.',
+          'Include sample-based human review for properties that code cannot judge reliably.',
+          'Record coverage and known exclusions along with pass or fail status.',
+        ],
+      },
+      {
+        heading: 'Make exceptions explicit and temporary',
+        paragraphs: [
+          'A release process needs a safe path for a justified exception, but an undocumented override weakens the gate. Record the failing rule, affected data, reason for proceeding, approver, expiration or review date, and compensating control. Do not convert a one-time exception into a silent permanent threshold change.',
+          'When a check fails, the pipeline should give a useful explanation: expected value, observed value, affected records or slices, and an owner for the next step. Decide in advance whether the data is blocked, quarantined, sent for review, or accepted under an exception.',
+        ],
+      },
+      {
+        heading: 'Measure whether the gate helps',
+        paragraphs: [
+          'Track which checks catch real issues, which produce avoidable alerts, and how long reviews take. If a threshold repeatedly triggers without changing a decision, refine it with the data owner. If a failure reaches production, add a check only after identifying a measurable signal that would have caught it earlier.',
+          'Revisit the gate when the use case, source system, population, labeling rules, or model workflow changes. A data contract is useful when it evolves with the system and its owners understand the consequences of each rule.',
+        ],
+      },
+    ],
+    references: [
+      { title: 'TensorFlow Data Validation guide', url: 'https://www.tensorflow.org/tfx/guide/tfdv' },
+      { title: 'NIST AI Risk Management Framework', url: 'https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10' },
+    ],
+  },
 ];
 
 export const insightBySlug = Object.fromEntries(insights.map((insight) => [insight.slug, insight])) as Record<string, Insight>;
