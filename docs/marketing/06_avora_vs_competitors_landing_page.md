@@ -55,4 +55,4 @@ We review a sample slice of your current dataset against our Data Quality Assura
 
 Get in touch with our team to discuss your data infrastructure requirements.
 
-[ **Contact Us →** ](mailto:avoraglobalus@gmail.com?subject=Data%20Infrastructure%20Inquiry)
+[ **Contact Us →** ](mailto:teamavora@techavora.com?subject=Data%20Infrastructure%20Inquiry)
